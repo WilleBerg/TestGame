@@ -4,11 +4,19 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/willi/source/repos/testgame/testgame/Content/ball.png</File>
-    <File>C:/Users/willi/source/repos/testgame/testgame/Content/debug.spritefont</File>
-    <File>C:/Users/willi/source/repos/testgame/testgame/Content/game1testpic.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/ball.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/debug.spritefont</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/exit.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/game1testpic.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/menu.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/settings.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/start.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

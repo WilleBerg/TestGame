@@ -50,3 +50,7 @@ C:\Users\willi\Desktop\testgame\testgame\obj\Debug\netcoreapp3.1\testgame.csproj
 C:\Users\willi\Desktop\testgame\testgame\obj\Debug\netcoreapp3.1\testgame.dll
 C:\Users\willi\Desktop\testgame\testgame\obj\Debug\netcoreapp3.1\testgame.pdb
 C:\Users\willi\Desktop\testgame\testgame\obj\Debug\netcoreapp3.1\testgame.genruntimeconfig.cache
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\exit.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\menu.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\settings.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\start.xnb
