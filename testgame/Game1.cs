@@ -11,7 +11,7 @@ namespace testgame {
         public static int resX = 1280;
         public static int resY = 720;
 
-        public int pcMovementSpeed = 6;
+        public int pcMovementSpeed = 5;
 
         Texture2D ballTexture;
         Texture2D testZone;
