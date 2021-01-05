@@ -132,9 +132,22 @@ namespace testgame {
             menu.ColorAlhpaChange(ui);
             
             _spriteBatch.Draw(menu.menuTexture, new Vector2(0, 0), Color.White);
-            _spriteBatch.Draw(startTexture, menu.startRec, Color.White * menu.alpha);
-            _spriteBatch.Draw(settingsTexture, menu.settingsRec, menu.recColor * menu.alpha);
-            _spriteBatch.Draw(exitTexture, menu.exitRec, menu.recColor);
+            if (ui.RecChecker(menu.startRec)) {
+                _spriteBatch.Draw(startTexture, menu.startRec, Color.White * menu.alpha);
+            } else {
+                _spriteBatch.Draw(startTexture, menu.startRec, Color.Transparent);
+            }
+            if (ui.RecChecker(menu.settingsRec)) {
+                _spriteBatch.Draw(settingsTexture, menu.settingsRec, menu.recColor * menu.alpha);
+            } else {
+                _spriteBatch.Draw(settingsTexture, menu.settingsRec, Color.Transparent);
+            }
+            if (ui.RecChecker(menu.exitRec)) {
+                _spriteBatch.Draw(exitTexture, menu.exitRec, menu.recColor * menu.alpha);
+            } else {
+                _spriteBatch.Draw(exitTexture, menu.exitRec, Color.Transparent);
+            }
+            
             _spriteBatch.DrawString(debug, kukollon, new Vector2(0, 0), Color.Red);
             _spriteBatch.End();
 

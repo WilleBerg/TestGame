@@ -43,14 +43,14 @@ namespace testgame {
         }
 
         public void ColorAlhpaChange(UI ui) {
-            if (!alphaSwitch && ui.RecChecker(settingsRec)) {
+            if (!alphaSwitch && (ui.RecChecker(settingsRec) || ui.RecChecker(startRec) || ui.RecChecker(exitRec))) {
                 recColor = new Color(Color.White, alpha);
-                alpha += 0.01f;
+                alpha += 0.008f;
                 if (alpha > 0.5f) {
                     alphaSwitch = true;
                 }
-            } else if (alphaSwitch && ui.RecChecker(settingsRec)) {
-                alpha -= 0.01f;
+            } else if (alphaSwitch && (ui.RecChecker(settingsRec) || ui.RecChecker(startRec) || ui.RecChecker(exitRec))) {
+                alpha -= 0.008f;
                 if (alpha <= 0) {
                     alphaSwitch = false;
                 }
