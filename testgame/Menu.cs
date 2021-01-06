@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace testgame {
-    class Menu {
+    public class Menu {
         public int switchKey;
         public Texture2D menuTexture;
         public Rectangle startRec;

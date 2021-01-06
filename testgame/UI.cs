@@ -52,5 +52,34 @@ namespace testgame {
                 return false;
             }
         }
+        public bool DownA() {
+            if (keyboardState.IsKeyDown(Keys.A)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public bool DownS() {
+            if (keyboardState.IsKeyDown(Keys.S)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public bool DownW() {
+            if (keyboardState.IsKeyDown(Keys.W)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public bool DownD() {
+            if (keyboardState.IsKeyDown(Keys.D)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
     }
 }

@@ -5,6 +5,18 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/ball.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charback.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charbackanimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charbackanimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charfronanimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charfronanimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charfront.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charLeft.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charLeftAnimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charLeftAnimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charRight.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charRightAnimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charRightAnimation2.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/debug.spritefont</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/exit.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/game1testpic.png</File>
@@ -13,6 +25,18 @@
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/start.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

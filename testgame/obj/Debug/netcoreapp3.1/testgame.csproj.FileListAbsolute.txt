@@ -54,3 +54,15 @@ C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\exit.xn
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\menu.xnb
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\settings.xnb
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\start.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charfront.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charfronanimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charfronanimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charback.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charbackanimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charbackanimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charRight.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charRightAnimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charRightAnimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charLeft.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charLeftAnimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charLeftAnimation2.xnb

@@ -11,10 +11,17 @@ namespace testgame {
         public PC() {
 
         }
-        public PC(Vector2 vector, CharGraphics graphics, int moveSpeed) {
+        public PC(Vector2 vector, CharGraphics graphics, int moveSpeed, List<Animation> animation) {
             this.vector = vector;
             this.graphics = graphics;
             this.moveSpeed = moveSpeed;
+            this.animation = animation;
+            latestTexture = graphics.texture;
+            latestAnimation = animation[0];
+        }
+
+        public void AddAnimation(Animation added) {
+            animation.Add(added);
         }
 
     }

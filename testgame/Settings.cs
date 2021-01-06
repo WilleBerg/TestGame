@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace testgame {
-    class Settings : Menu {
+    public class Settings : Menu {
     }
 }

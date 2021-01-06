@@ -1,3 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/willi/Desktop/testgame/testgame/Content/exit.png","C:/Users/willi/Desktop/testgame/testgame/Content/bin/DesktopGL/exit.xnb","TextureProcessor","Texture2DContent",152,57685,0,2793209
-"C:/Users/willi/Desktop/testgame/testgame/Content/start.png","C:/Users/willi/Desktop/testgame/testgame/Content/bin/DesktopGL/start.xnb","TextureProcessor","Texture2DContent",156,89685,0,0145956
+"C:/Users/willi/Desktop/testgame/testgame/Content/charLeft.png","C:/Users/willi/Desktop/testgame/testgame/Content/bin/DesktopGL/charLeft.xnb","TextureProcessor","Texture2DContent",439,26005,0,1502865
+"C:/Users/willi/Desktop/testgame/testgame/Content/charLeftAnimation1.png","C:/Users/willi/Desktop/testgame/testgame/Content/bin/DesktopGL/charLeftAnimation1.xnb","TextureProcessor","Texture2DContent",443,26005,0,0116399
+"C:/Users/willi/Desktop/testgame/testgame/Content/charLeftAnimation2.png","C:/Users/willi/Desktop/testgame/testgame/Content/bin/DesktopGL/charLeftAnimation2.xnb","TextureProcessor","Texture2DContent",439,26005,0,012489
