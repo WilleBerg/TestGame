@@ -66,3 +66,6 @@ C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charRig
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charLeft.xnb
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charLeftAnimation1.xnb
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charLeftAnimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\rumstor.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\rumstor3.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\gridSquare.xnb
