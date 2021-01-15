@@ -1,5 +1,7 @@
 # TestGame
 
+v0.0141 - test commit on new laptop
+
 v0.014 - added hitbox grid class and added it to first room zone, functionality of grid not implemented yet
 
 v0.013 - added textures and animations for pc
