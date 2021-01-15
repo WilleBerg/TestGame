@@ -1,5 +1,12 @@
 # TestGame
 
+TODO:
+- Fix grid bug
+- Add grid maker
+- finish room1
+
+
+
 v0.015 - functionality of grid is now somewhat working, needs some fine tuning
 
 v0.0141 - test commit from laptop
