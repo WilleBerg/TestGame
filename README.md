@@ -1,6 +1,8 @@
 # TestGame
 
-v0.0141 - test commit on new laptop
+v0.015 - functionality of grid is now somewhat working, needs some fine tuning
+
+v0.0141 - test commit from laptop
 
 v0.014 - added hitbox grid class and added it to first room zone, functionality of grid not implemented yet
 

@@ -21,32 +21,36 @@ namespace testgame {
             this.grid = grid;
         }
 
-        public void Move(KeyboardState state) {
-
-            if (vector.X - pc.moveSpeed >= graphics.resX - graphics.texture.Width && state.IsKeyDown(Keys.D) && pc.vector.X >= graphics.resX / 2 - pc.graphics.texture.Width / 2) {
+        public void Move(KeyboardState state, UI ui) {
+            if (!Game1.notAllowedKeys.Contains(Keys.D) && vector.X - pc.moveSpeed >= graphics.resX - graphics.texture.Width && state.IsKeyDown(Keys.D) && pc.vector.X >= graphics.resX / 2 - pc.graphics.texture.Width / 2) {
                 vector.X -= pc.moveSpeed;
                 grid.vectorDelta.X -= pc.moveSpeed;
-            } else if (pc.vector.X + pc.moveSpeed <= graphics.resX - pc.graphics.texture.Width && state.IsKeyDown(Keys.D)) {
+
+            } else if (!Game1.notAllowedKeys.Contains(Keys.D) && pc.vector.X + pc.moveSpeed <= graphics.resX - pc.graphics.texture.Width && state.IsKeyDown(Keys.D)) {
                 pc.vector.X += pc.moveSpeed;
             }
-            if (vector.X + pc.moveSpeed <= 0 && state.IsKeyDown(Keys.A) && pc.vector.X <= graphics.resX / 2 - pc.graphics.texture.Width / 2) {
+            if (!Game1.notAllowedKeys.Contains(Keys.A) && vector.X + pc.moveSpeed <= 0 && state.IsKeyDown(Keys.A) && pc.vector.X <= graphics.resX / 2 - pc.graphics.texture.Width / 2) {
                 vector.X += pc.moveSpeed;
                 grid.vectorDelta.X += pc.moveSpeed;
-            } else if (pc.vector.X >= 0 && state.IsKeyDown(Keys.A)) {
+
+            } else if (!Game1.notAllowedKeys.Contains(Keys.A) && pc.vector.X >= 0 && state.IsKeyDown(Keys.A)) {
                 pc.vector.X -= pc.moveSpeed;
             }
-            if (vector.Y - pc.moveSpeed >= graphics.resY - graphics.texture.Height && state.IsKeyDown(Keys.S) && pc.vector.Y >= graphics.resY / 2 - pc.graphics.texture.Height) {
+            if (!Game1.notAllowedKeys.Contains(Keys.S) && vector.Y - pc.moveSpeed >= graphics.resY - graphics.texture.Height && state.IsKeyDown(Keys.S) && pc.vector.Y >= graphics.resY / 2 - pc.graphics.texture.Height) {
                 vector.Y -= pc.moveSpeed;
                 grid.vectorDelta.Y -= pc.moveSpeed;
-            } else if (pc.vector.Y + pc.moveSpeed <= (graphics.resY - pc.graphics.texture.Height) && state.IsKeyDown(Keys.S)) {
+
+            } else if (!Game1.notAllowedKeys.Contains(Keys.S) && pc.vector.Y + pc.moveSpeed <= ( graphics.resY - pc.graphics.texture.Height ) && state.IsKeyDown(Keys.S)) {
                 pc.vector.Y += pc.moveSpeed;
             }
-            if (vector.Y + pc.moveSpeed <= 0 && state.IsKeyDown(Keys.W) && pc.vector.Y <= graphics.resY / 2 - pc.graphics.texture.Height / 2) {
+            if (!Game1.notAllowedKeys.Contains(Keys.W) && vector.Y + pc.moveSpeed <= 0 && state.IsKeyDown(Keys.W) && pc.vector.Y <= graphics.resY / 2 - pc.graphics.texture.Height / 2) {
                 vector.Y += pc.moveSpeed;
                 grid.vectorDelta.Y += pc.moveSpeed;
-            } else if (pc.vector.Y - pc.moveSpeed >= 0 && state.IsKeyDown(Keys.W)) {
+
+            } else if (!Game1.notAllowedKeys.Contains(Keys.W) && pc.vector.Y - pc.moveSpeed >= 0 && state.IsKeyDown(Keys.W)) {
                 pc.vector.Y -= pc.moveSpeed;
-            } 
+            }
+
         }
 
     }

@@ -14,6 +14,7 @@ namespace testgame {
         public List<Animation> animation;
         public Texture2D latestTexture;
         public Animation latestAnimation;
+        public Rectangle hitbox;
         public Char() {
 
         }
