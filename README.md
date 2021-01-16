@@ -1,13 +1,29 @@
 # TestGame
 
-TODO:
-- Fix grid bug
-- Add grid maker
-- finish room1
 
+
+
+
+
+v0.016 - Grid now working as intended. If developer settings is enabled, you can now show the hitbox, both enable and
+disabled at the same time or seperate. You can edit the hitboxes with left mouse. Fixed AD and WS bug. Added settings.
+For now there is only enable developer settings. Also the hitbox grid is now stored inside SavedList.txt, and gets loaded
+when game starts.
+
+TODO:
+- Add hallway room.
+- Maybe add ActionEvent class.
+- Add zone startVector.
+- Switching room functionality.
 
 
 v0.015 - functionality of grid is now somewhat working, needs some fine tuning
+
+TODO:
+- Fix grid bug - fixed, but will fine tune
+- Add grid maker - basically done
+- finish room1 - basically done
+- fix AD animation bug - DONE
 
 v0.0141 - test commit from laptop
 

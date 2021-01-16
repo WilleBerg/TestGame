@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,9 +13,15 @@ namespace testgame {
         private bool[,] boolGrid;
         private bool[,] needsMove;
         public string[,] debugStringArray;
+        public int hitBoxWidth;
+        public int hitBoxHeight;
+        public bool showDisabledHitBoxes;
         private int width;
         private int height;
         private  Vector2[,] vectorArray;
+        private bool setHitboxToggle;
+
+        public bool SetHitboxToggle { get { return setHitboxToggle; } set { setHitboxToggle = value; } }
         public Vector2[,] VectorArray { get { return vectorArray; } set { vectorArray = value; } }
         public Vector2 vectorDelta;
 
@@ -29,10 +36,12 @@ namespace testgame {
 
         }
 
-        public Grid(int gridWidth, int gridHeight, Vector2 vectorDelta) {
+        public Grid(int gridWidth, int gridHeight, Vector2 vectorDelta, int hitBoxWidth, int hitBoxHeight) {
             this.width = gridWidth;
             this.height = gridHeight;
             this.vectorDelta = vectorDelta;
+            this.hitBoxHeight = hitBoxHeight;
+            this.hitBoxWidth = hitBoxWidth;
             needsMove = new bool[gridHeight, gridWidth];
             vectorArray = new Vector2[gridHeight, gridWidth];
             for (int i = 0; i < height; i++) {
@@ -40,6 +49,7 @@ namespace testgame {
                     vectorArray[i, j] = new Vector2(0, 0);
                 }
             }
+            showDisabledHitBoxes = false;
         }
 
         public Grid(Rectangle[,] hitBoxGrid) {
@@ -56,16 +66,14 @@ namespace testgame {
         /// <summary>
         /// Creates a rectangle array the size of (Grid.width x Grid.height)
         /// </summary>
-        /// <param name="width">The width of the rectangle</param>
-        /// <param name="height">The height of the rectangle</param>
-        public void CreateRectangleArray(int width, int height)
+        public void CreateRectangleArray()
         {
             Rectangle[,] temp = new Rectangle[this.height, this.width];
             for (int i = 0; i < this.height; i++)
             {
                 for (int j = 0; j < this.width; j++)
                 {
-                    temp[i, j] = new Rectangle((int)vectorDelta.X, (int)vectorDelta.Y, width, height);
+                    temp[i, j] = new Rectangle((int)vectorDelta.X, (int)vectorDelta.Y, hitBoxWidth, hitBoxHeight);
                 }
             }
             hitBoxArray = temp;
@@ -79,14 +87,14 @@ namespace testgame {
             for (int i = 0; i < height; i++) {
                 if (i != 0) {
                     for (int j = 0; j < width - 1; j++) {
-                        hitBoxArray[i, j].Y += i * 24;
-                        vectorArray[i, j].Y += i * 24;
+                        hitBoxArray[i, j].Y += i * hitBoxHeight;
+                        vectorArray[i, j].Y += i * hitBoxHeight;
                     }
                 }
                 for (int j = 0; j < width; j++) {
                     if (j != 0) {
-                        hitBoxArray[i, j].X += j * 24;
-                        vectorArray[i, j].X += j * 24;
+                        hitBoxArray[i, j].X += j * hitBoxWidth;
+                        vectorArray[i, j].X += j * hitBoxWidth;
                     }
                 }
             }
@@ -94,12 +102,12 @@ namespace testgame {
         public void SetHitBox(UI ui) {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
-                    if (ui.LeftMousePressed() && ui.RecChecker(hitBoxArray[i,j])) {
-                        boolGrid[i, j] = true;
+                    if (ui.Musknappar() && ui.RecChecker(hitBoxArray[i,j])) {
+                        boolGrid[i, j] = !boolGrid[i, j];
                     }
+                    
                 }
             }
-            
         }
         private void NeedMove() {
             for (int i = 0; i < height; i++) {
@@ -111,9 +119,9 @@ namespace testgame {
         /// <summary>
         /// Checks if a character intersects with a Grid.Hitbox.
         /// </summary>
-        /// <param name="character"></param>
+        /// <param name="character">The character that gets checked</param>
         /// <returns>True if the character hitbox intersects with the grid</returns>
-        public bool CharacterIntersect(Char character) {
+        public bool CharacterIntersect(Character character) {
 
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
@@ -125,6 +133,33 @@ namespace testgame {
                 }
             }
             return false;
+        }
+        public void WriteGrid() {
+            TextWriter tw = new StreamWriter("SavedList.txt");
+
+            for (int i = 0; i < Height; i++) {
+                for (int j = 0; j < Width; j++) {
+                    tw.WriteLine(BoolGrid[i, j].ToString());
+                }
+            }
+            tw.Close();
+        }
+        public void LoadGrid() {
+            int counter1 = 0;
+            string[] allLines = File.ReadAllLines("SavedList.txt");
+            if (allLines.Length == width * height) {
+                for (int i = 0; i < height; i++) {
+                    for (int j = 0; j < width; j++) {
+                        if (allLines[counter1] == "True") {
+                            boolGrid[i, j] = true;
+                            counter1++;
+                        } else if (allLines[counter1] == "False") {
+                            boolGrid[i, j] = false;
+                            counter1++;
+                        }
+                    }
+                }
+            }
         }
     }
     

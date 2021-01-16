@@ -97,6 +97,18 @@
 /processorParam:TextureFormat=Color
 /build:charfront.png
 
+#begin charHitboxTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:charHitboxTexture.png
+
 #begin charLeft.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -176,6 +188,18 @@
 /processorParam:TextureFormat=Compressed
 /build:debug.spritefont
 
+#begin enableDev.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enableDev.png
+
 #begin exit.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -224,6 +248,18 @@
 /processorParam:TextureFormat=Color
 /build:menu.png
 
+#begin return.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:return.png
+
 #begin rumstor.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -259,6 +295,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:settings.png
+
+#begin settingsTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:settingsTexture.png
 
 #begin start.png
 /importer:TextureImporter

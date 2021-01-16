@@ -10,7 +10,7 @@ namespace testgame {
     public abstract class World {
         public WorldGraphics graphics;
         public Vector2 vector;
-        public List<Char> currCharacters;
+        public List<Character> currCharacters;
         public PC pc;
     }
 }

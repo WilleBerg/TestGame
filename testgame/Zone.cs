@@ -13,7 +13,8 @@ namespace testgame {
 
         }
         public Grid grid;
-        public Zone(Vector2 vector, WorldGraphics graphics, List<Char> currentCharacters, PC pc, Grid grid) {
+        public Zone[] connectedZones;
+        public Zone(Vector2 vector, WorldGraphics graphics, List<Character> currentCharacters, PC pc, Grid grid) {
             this.vector = vector;
             this.graphics = graphics;
             currCharacters = currentCharacters;
@@ -52,6 +53,7 @@ namespace testgame {
             }
 
         }
+
 
     }
 }

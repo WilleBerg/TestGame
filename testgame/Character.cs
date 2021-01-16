@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 
 namespace testgame {
-    public abstract class Char {
+    public abstract class Character {
         public CharGraphics graphics;
         public Vector2 vector;
         public int moveSpeed;
@@ -15,7 +15,7 @@ namespace testgame {
         public Texture2D latestTexture;
         public Animation latestAnimation;
         public Rectangle hitbox;
-        public Char() {
+        public Character() {
 
         }
 

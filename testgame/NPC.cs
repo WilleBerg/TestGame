@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace testgame {
-    public abstract class NPC : Char {
+    public abstract class NPC : Character {
 
     }
 }

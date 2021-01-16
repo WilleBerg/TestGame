@@ -1,0 +1,18 @@
+Developer settings keybindings
+
+
+Toggle Grid - O
+Show disabled hitboxes - I
+Toggle Edit grid - P
+	In edit grid : Clear Grid L
+	
+
+
+Standard Keybindings
+
+Up - W
+Down - S
+Right - D
+Left - A
+
+Return to Main menu - M

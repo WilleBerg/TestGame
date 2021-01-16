@@ -30,7 +30,7 @@ namespace testgame {
             recColor = new Color(Color.White, 1.0f);
         }
 
-        public void MenuButtons(UI ui) {
+        public void Buttons(UI ui) {
             if (ui.Musknappar() && ui.RecChecker(startRec)) {
                 switchKey = 1;
             }

@@ -1,2 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/willi/Desktop/testgame/testgame/Content/gridSquare.png","C:/Users/willi/Desktop/testgame/testgame/Content/bin/DesktopGL/gridSquare.xnb","TextureProcessor","Texture2DContent",200,1109,0,1318321
+"C:/Users/Elev/Desktop/TestGame/testgame/Content/charHitboxTexture.png","C:/Users/Elev/Desktop/TestGame/testgame/Content/bin/DesktopGL/charHitboxTexture.xnb","TextureProcessor","Texture2DContent",206,26005,0,2400129

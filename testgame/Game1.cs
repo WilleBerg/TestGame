@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace testgame {
     public class Game1 : Game {
@@ -17,16 +19,23 @@ namespace testgame {
 
         public static List<Keys> notAllowedKeys = new List<Keys>();
 
+        bool toggleGrid = false;
+        
+
         Texture2D charFrontTexture;
         Texture2D testZone;
         Texture2D menuTexture;
         Texture2D startTexture;
         Texture2D settingsTexture;
+        Texture2D settingsMenuTexture;
+        Texture2D devToggleTexture;
+        Texture2D returnTexture;
         Texture2D exitTexture;
         Texture2D charBackTexture;
         Texture2D charRightTexture;
         Texture2D charLeftTexture;
         Texture2D rumTexture;
+        Texture2D charHitboxTexture;
 
         Texture2D charFrontAnimation1;
         Texture2D charFrontAnimation2;
@@ -36,6 +45,8 @@ namespace testgame {
         Texture2D charRightAnimation2;
         Texture2D charLeftAnimation1;
         Texture2D charLeftAnimation2;
+
+
 
         Texture2D gridTexture;
 
@@ -48,6 +59,8 @@ namespace testgame {
 
         UI ui = new UI();
 
+        Settings settings = new Settings();
+
         PC character = new PC();
         Animation frontAnimation = new Animation();
         Animation backAnimation = new Animation();
@@ -56,11 +69,11 @@ namespace testgame {
 
         Zone zone = new Zone();
         ZoneGraphics zoneGraphics = new ZoneGraphics();
-        public Grid roomGrid = new Grid(81, 45, new Vector2(0,0));
+        public Grid roomGrid = new Grid(160, 90, new Vector2(0,0), 12, 12);
         
         
 
-        List<Char> currentCharacters = new List<Char>();
+        List<Character> currentCharacters = new List<Character>();
 
         SpriteFont debug;
 
@@ -101,6 +114,10 @@ namespace testgame {
             charLeftAnimation2 = Content.Load<Texture2D>("charLeftAnimation2");
             rumTexture = Content.Load<Texture2D>("rumstor3");
             gridTexture = Content.Load<Texture2D>("gridSquare");
+            settingsMenuTexture = Content.Load<Texture2D>("settingsTexture");
+            returnTexture = Content.Load<Texture2D>("return");
+            devToggleTexture = Content.Load<Texture2D>("enableDev");
+            charHitboxTexture = Content.Load<Texture2D>("charHitboxTexture");
 
             testZone = Content.Load<Texture2D>("game1testpic");
             menuTexture = Content.Load<Texture2D>("menu");
@@ -113,6 +130,7 @@ namespace testgame {
             ballGraphics = new CharGraphics(charFrontTexture);
             zoneGraphics = new ZoneGraphics(rumTexture, resX, resY);
             menu = new Menu(menuTexture);
+            settings = new Settings(settingsMenuTexture);
 
             frontAnimation = new Animation(new List<Texture2D> { charFrontTexture }, "front");
             frontAnimation.AddTexture(charFrontAnimation1);
@@ -135,9 +153,11 @@ namespace testgame {
             leftSideAnimation.AddTexture(charLeftAnimation2);
             leftSideAnimation.AddTexture(charLeftTexture);
 
-            roomGrid.CreateRectangleArray(24, 24);
+            roomGrid.CreateRectangleArray();
             roomGrid.SetVectors();
             roomGrid.BoolGrid = new bool[roomGrid.Height, roomGrid.Width];
+            roomGrid.LoadGrid();
+
 
             character = new PC(ballvector, ballGraphics, pcMovementSpeed, new List<Animation> { frontAnimation }, new Rectangle((int) ballvector.X, (int) ballvector.Y, 66, 108));
             currentCharacters.Add(character);
@@ -153,11 +173,15 @@ namespace testgame {
         }
 
         protected override void Update(GameTime gameTime) {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) {
                 Exit();
+                roomGrid.WriteGrid();
+            }
+                
             ui.UpdateStates();
-            kukollon = "Zone Coordinates; X: " + zone.vector.X + " Y: " + zone.vector.Y + "     Ball Coordinates; X: " + character.vector.X + " Y: " + character.vector.Y  +
-                menu.alpha + "   Frame Count " + currentFrameCount + "   Texture Count " + textureCount + "     " + roomGrid.Height + "     " + roomGrid.Width;
+            kukollon = "Zone Coordinates; X: " + zone.vector.X + " Y: " + zone.vector.Y + "     Ball Coordinates; X: " + character.vector.X + " Y: " + character.vector.Y +
+                menu.alpha + "   Frame Count " + currentFrameCount + "   Texture Count " + textureCount + "     " + roomGrid.Height + "     " + roomGrid.Width + "\n" 
+                + "Grid view: " + toggleGrid + "\n" + "Grid Edit: " + roomGrid.SetHitboxToggle;
             for (int i = 0; i < notAllowedKeys.Count; i++) {
                 kukollon += "   " + notAllowedKeys[i].ToString();
             }
@@ -172,20 +196,44 @@ namespace testgame {
 
             switch (menu.switchKey) {
                 case 0:
-                    menu.MenuButtons(ui);
+                    menu.Buttons(ui);
                     DrawMenu();
                     break;
+                // Main game;
                 case 1:
                     _spriteBatch.Begin();
                     notAllowedKeys = ui.NotAllowedKeys(character, roomGrid);
                     DrawZone(zone);
                     DrawGrid(roomGrid);
-                    roomGrid.SetHitBox(ui);
+                    if (ui.DownKey(Keys.M)) {
+                        menu.switchKey = 0;
+                    }
+                    if (settings.DevToggle) {
+                        ToggleGridView(roomGrid);
+                        if (roomGrid.SetHitboxToggle) {
+                            roomGrid.SetHitBox(ui);
+                            ResetGrid(roomGrid);
+                        }
+                        if (ui.KeyPressedAndReleased(Keys.P)) {
+                            roomGrid.SetHitboxToggle = !roomGrid.SetHitboxToggle;
+                        }
+                        _spriteBatch.DrawString(debug, kukollon, new Vector2(0, 0), Color.White);
+                    }
+
+                    //roomGrid.SetHitBox(ui);
                     DrawPlayableCharacter(character);
-                    _spriteBatch.DrawString(debug, kukollon, new Vector2(0, 0), Color.White);
                     _spriteBatch.End();
                     break;
+                // Settings
+                case 2:
+                    settings.Buttons(ui, menu);
+                    DrawSettings();
+                    break;
                 case 2000:
+
+
+                    roomGrid.WriteGrid();
+
                     Exit();
                     break;
                 default:
@@ -193,14 +241,35 @@ namespace testgame {
             }
             base.Draw(gameTime);
         }
+        
+        public void ResetGrid(Grid grid) {
+            if (ui.DownKey(Keys.L)) {
+                for (int i = 0; i < grid.Height; i++) {
+                    for (int j = 0; j < grid.Width; j++) {
+                        grid.BoolGrid[i, j] = false;
+                    }
+                }
+            }
+        }
+        public void ToggleGridView(Grid grid) {
+            if (ui.KeyPressedAndReleased(Keys.O)) {
+                if (toggleGrid) {
+                    toggleGrid = false;
+                } else {
+                    toggleGrid = true;
+                }
+            } else if (ui.KeyPressedAndReleased(Keys.I)) {
+                grid.showDisabledHitBoxes = !grid.showDisabledHitBoxes;
+            }
+        }
         public void DrawGrid(Grid grid) {
             for (int i = 0; i < grid.Height; i++) {
                 for (int j = 0; j < grid.Width; j++) {
                     grid.hitBoxArray[i, j].X = (int)grid.vectorDelta.X + (int)grid.VectorArray[i, j].X;
                     grid.hitBoxArray[i, j].Y = (int)grid.vectorDelta.Y + (int)grid.VectorArray[i, j].Y;
-                    if (grid.BoolGrid[i,j]) {
+                    if (grid.BoolGrid[i,j] && toggleGrid) {
                         _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i,j], Color.Red);
-                    } else {
+                    } else if (toggleGrid && grid.showDisabledHitBoxes) {
                         _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j], Color.White);
                     }
                 }
@@ -213,40 +282,45 @@ namespace testgame {
         public void DrawPlayableCharacter(PC character) {
             character.hitbox.X = (int) character.vector.X;
             character.hitbox.Y = (int) character.vector.Y;
-            _spriteBatch.Draw(character.latestTexture, character.hitbox, Color.Transparent);
+            if (settings.DevToggle) {
+                _spriteBatch.Draw(charHitboxTexture, character.hitbox, Color.Blue);
+            }
             for (int i = 0; i < character.animation.Count; i++) {
 
                 bool doubleKey1 = (ui.DownKey(Keys.D) || ui.DownKey(Keys.A)) && ui.DownKey(Keys.W);
                 bool doubleKey2 = ui.DownKey(Keys.S) && (ui.DownKey(Keys.D) || ui.DownKey(Keys.A));
+                bool doubleKey3 = ui.DownKey(Keys.W) && ui.DownKey(Keys.S);
+                bool doubleKey4 = ui.DownKey(Keys.D) && ui.DownKey(Keys.A);
 
-                if ((ui.DownKey(Keys.S) || doubleKey2) && character.animation[i].AnimationType() == 0) {
+                if ((ui.DownKey(Keys.S) || doubleKey2) && !doubleKey3 && character.animation[i].AnimationType() == 0) {
                     character.latestTexture = character.animation[i].textureList[0];
                     character.latestAnimation = character.animation[i];
                     DrawAnimation(character.animation[i], character);
 
-                } else if ((ui.DownKey(Keys.W) || doubleKey1) && character.animation[i].AnimationType() == 1) {
+                } else if ((ui.DownKey(Keys.W) || doubleKey1) && !doubleKey3 && character.animation[i].AnimationType() == 1) {
                     character.latestTexture = character.animation[i].textureList[0];
                     character.latestAnimation = character.animation[i];
                     DrawAnimation(character.animation[i], character);
 
-                } else if (ui.DownKey(Keys.A) && !doubleKey1 && !doubleKey2 && character.animation[i].AnimationType() == 2) {
+                } else if (ui.DownKey(Keys.A) && !doubleKey1 && !doubleKey4 && !doubleKey2 && character.animation[i].AnimationType() == 2) {
                     character.latestTexture = character.animation[i].textureList[0];
                     character.latestAnimation = character.animation[i];
                     DrawAnimation(character.animation[i], character);
 
-                } else if (ui.DownKey(Keys.D) && !doubleKey1 && !doubleKey2 && character.animation[i].AnimationType() == 3) {
+                } else if (ui.DownKey(Keys.D) && !doubleKey1 && !doubleKey4 && !doubleKey2 && character.animation[i].AnimationType() == 3) {
                     character.latestTexture = character.animation[i].textureList[0];
                     character.latestAnimation = character.animation[i];
                     DrawAnimation(character.animation[i], character);
 
                 } else if (!ui.DownKey(Keys.A) && !ui.DownKey(Keys.D) && !ui.DownKey(Keys.S) && !ui.DownKey(Keys.W)) {
-                    textureCount++;
                     _spriteBatch.Draw(character.latestTexture, character.vector, Color.White);
 
-                } 
+                } else if (doubleKey3 || doubleKey4) {
+                    _spriteBatch.Draw(character.latestTexture, character.vector, Color.White);
+                }
             }
         }
-        public void DrawAnimation(Animation animation, Char character) {
+        public void DrawAnimation(Animation animation, Character character) {
             currentFrameCount = animation.frameCount;
             if (animation.currAnimation > animation.textureList.Count - 1) {
                 _spriteBatch.Draw(character.latestTexture, character.vector, Color.White);
@@ -284,10 +358,29 @@ namespace testgame {
             } else {
                 _spriteBatch.Draw(exitTexture, menu.exitRec, Color.Transparent);
             }
+            if (settings.DevToggle) {
+                _spriteBatch.DrawString(debug, kukollon, new Vector2(0, 0), Color.Red);
+            }
             
-            _spriteBatch.DrawString(debug, kukollon, new Vector2(0, 0), Color.Red);
+
             _spriteBatch.End();
 
+        }
+        public void DrawSettings() {
+            _spriteBatch.Begin();
+            settings.ColorAlhpaChange(ui);
+            _spriteBatch.Draw(settings.settingsTexture, new Vector2(0, 0), Color.White);
+            if (ui.RecChecker(settings.developerButton)) {
+                _spriteBatch.Draw(devToggleTexture, settings.developerButton, Color.White * settings.alpha);
+            } else {
+                _spriteBatch.Draw(devToggleTexture, settings.developerButton, Color.Transparent);
+            }
+            if (ui.RecChecker(settings.returnButton)) {
+                _spriteBatch.Draw(returnTexture, settings.returnButton, Color.White * settings.alpha);
+            } else {
+                _spriteBatch.Draw(returnTexture, settings.returnButton, Color.Transparent);
+            }
+            _spriteBatch.End();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace testgame {
         public MouseState mus;
         public MouseState gammalMus;
         public KeyboardState keyboardState;
-
+        public KeyboardState oldKeyboard;
         public UI() {
             gammalMus = mus;
             mus = Mouse.GetState();
@@ -21,6 +21,7 @@ namespace testgame {
             this.mus = mus;
             this.gammalMus = gammalMus;
             this.keyboardState = keyboardState;
+            oldKeyboard = keyboardState;
         }
 
         /// <summary>
@@ -40,6 +41,7 @@ namespace testgame {
         /// </summary>
         public void UpdateStates() {
             gammalMus = mus;
+            oldKeyboard = keyboardState;
             mus = Mouse.GetState();
             keyboardState = Keyboard.GetState();
         }
@@ -68,6 +70,22 @@ namespace testgame {
             }
         }
 
+        public bool RightMousePressed() {
+            if (mus.RightButton == ButtonState.Pressed) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public bool KeyPressedAndReleased(Keys key) {
+            if (keyboardState.IsKeyDown(key) && oldKeyboard.IsKeyUp(key)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Checks if A is being pressed on the keyboard
         /// </summary>
@@ -79,13 +97,18 @@ namespace testgame {
                 return false;
             }
         }
-
+        /// <summary>
+        /// Creates a list of currently not allowed keys. It checks if a move in any direction results in a hitbox intersect.
+        /// </summary>
+        /// <param name="pc">The playable character that get its move checked</param>
+        /// <param name="grid">The grid of the zone that the playable character is in</param>
+        /// <returns></returns>
         public List<Keys> NotAllowedKeys(PC pc, Grid grid) {
             List<Keys> notAllowedKeys = new List<Keys>();
-            Rectangle tempD = new Rectangle(pc.hitbox.X + Game1.pcMovementSpeed, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
-            Rectangle tempA = new Rectangle(pc.hitbox.X - Game1.pcMovementSpeed, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
-            Rectangle tempS = new Rectangle(pc.hitbox.X, pc.hitbox.Y + Game1.pcMovementSpeed, pc.hitbox.Width, pc.hitbox.Height);
-            Rectangle tempW = new Rectangle(pc.hitbox.X, pc.hitbox.Y - Game1.pcMovementSpeed, pc.hitbox.Width, pc.hitbox.Height);
+            Rectangle tempD = new Rectangle(pc.hitbox.X + Game1.pcMovementSpeed + 4, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
+            Rectangle tempA = new Rectangle(pc.hitbox.X - Game1.pcMovementSpeed - 4, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
+            Rectangle tempS = new Rectangle(pc.hitbox.X, pc.hitbox.Y + Game1.pcMovementSpeed + 5, pc.hitbox.Width, pc.hitbox.Height);
+            Rectangle tempW = new Rectangle(pc.hitbox.X, pc.hitbox.Y - Game1.pcMovementSpeed - 5, pc.hitbox.Width, pc.hitbox.Height);
             for (int i = 0; i < grid.Height; i++) {
                 for (int j = 0; j < grid.Width; j++) {
                     if (grid.BoolGrid[i,j]) {

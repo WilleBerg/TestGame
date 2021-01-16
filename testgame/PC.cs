@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace testgame {
-    public class PC : Char {
+    public class PC : Character {
 
         public PC() {
 

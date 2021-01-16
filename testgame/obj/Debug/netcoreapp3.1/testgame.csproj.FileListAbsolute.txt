@@ -159,3 +159,7 @@ C:\Users\Elev\Desktop\TestGame\testgame\obj\Debug\netcoreapp3.1\testgame.csproj.
 C:\Users\Elev\Desktop\TestGame\testgame\obj\Debug\netcoreapp3.1\testgame.dll
 C:\Users\Elev\Desktop\TestGame\testgame\obj\Debug\netcoreapp3.1\testgame.pdb
 C:\Users\Elev\Desktop\TestGame\testgame\obj\Debug\netcoreapp3.1\testgame.genruntimeconfig.cache
+C:\Users\Elev\Desktop\TestGame\testgame\bin\Debug\netcoreapp3.1\Content\enableDev.xnb
+C:\Users\Elev\Desktop\TestGame\testgame\bin\Debug\netcoreapp3.1\Content\return.xnb
+C:\Users\Elev\Desktop\TestGame\testgame\bin\Debug\netcoreapp3.1\Content\settingsTexture.xnb
+C:\Users\Elev\Desktop\TestGame\testgame\bin\Debug\netcoreapp3.1\Content\charHitboxTexture.xnb
