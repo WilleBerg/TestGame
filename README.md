@@ -3,7 +3,7 @@
 
 
 
-
+v0.0161 - Commented methods. Added event class. Fixed up main class. Last commit from laptop for now.
 
 v0.016 - Grid now working as intended. If developer settings is enabled, you can now show the hitbox, both enable and
 disabled at the same time or seperate. You can edit the hitboxes with left mouse. Fixed AD and WS bug. Added settings.

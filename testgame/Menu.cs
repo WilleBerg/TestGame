@@ -30,6 +30,10 @@ namespace testgame {
             recColor = new Color(Color.White, 1.0f);
         }
 
+        /// <summary>
+        /// Checks if the main menu buttons has been pressed, if they hade it switches scene.
+        /// </summary>
+        /// <param name="ui"></param>
         public void Buttons(UI ui) {
             if (ui.Musknappar() && ui.RecChecker(startRec)) {
                 switchKey = 1;
@@ -42,6 +46,10 @@ namespace testgame {
             }
         }
 
+        /// <summary>
+        /// Changes Alpha of the main menu buttons. Used for the glow when hovering buttons in main menu.
+        /// </summary>
+        /// <param name="ui"></param>
         public void ColorAlhpaChange(UI ui) {
             if (!alphaSwitch && (ui.RecChecker(settingsRec) || ui.RecChecker(startRec) || ui.RecChecker(exitRec))) {
                 recColor = new Color(Color.White, alpha);

@@ -20,7 +20,9 @@ namespace testgame {
         public static List<Keys> notAllowedKeys = new List<Keys>();
 
         bool toggleGrid = false;
-        
+
+        World world = new World();
+
 
         Texture2D charFrontTexture;
         Texture2D testZone;
@@ -69,7 +71,7 @@ namespace testgame {
 
         Zone zone = new Zone();
         ZoneGraphics zoneGraphics = new ZoneGraphics();
-        public Grid roomGrid = new Grid(160, 90, new Vector2(0,0), 12, 12);
+        public Grid roomGrid = new Grid(160, 90, new Vector2(0,0), 12, 12, "FirstRoomHitbox.txt");
         
         
 
@@ -100,6 +102,7 @@ namespace testgame {
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //Character and character animation textures
             charFrontTexture = Content.Load<Texture2D>("charfront");
             charBackTexture = Content.Load<Texture2D>("charback");
             charRightTexture = Content.Load<Texture2D>("charRight");
@@ -112,17 +115,28 @@ namespace testgame {
             charRightAnimation2 = Content.Load<Texture2D>("charRightAnimation2");
             charLeftAnimation1 = Content.Load<Texture2D>("charLeftAnimation1");
             charLeftAnimation2 = Content.Load<Texture2D>("charLeftAnimation2");
+
+
             rumTexture = Content.Load<Texture2D>("rumstor3");
+
             gridTexture = Content.Load<Texture2D>("gridSquare");
+
             settingsMenuTexture = Content.Load<Texture2D>("settingsTexture");
+
             returnTexture = Content.Load<Texture2D>("return");
+
             devToggleTexture = Content.Load<Texture2D>("enableDev");
+
             charHitboxTexture = Content.Load<Texture2D>("charHitboxTexture");
 
             testZone = Content.Load<Texture2D>("game1testpic");
+
             menuTexture = Content.Load<Texture2D>("menu");
+
             startTexture = Content.Load<Texture2D>("start");
+
             settingsTexture = Content.Load<Texture2D>("settings");
+
             exitTexture = Content.Load<Texture2D>("exit");
 
             ui = new UI();
@@ -132,6 +146,8 @@ namespace testgame {
             menu = new Menu(menuTexture);
             settings = new Settings(settingsMenuTexture);
 
+
+            // PC animation textures getting loaded
             frontAnimation = new Animation(new List<Texture2D> { charFrontTexture }, "front");
             frontAnimation.AddTexture(charFrontAnimation1);
             frontAnimation.AddTexture(charFrontAnimation2);
@@ -153,12 +169,13 @@ namespace testgame {
             leftSideAnimation.AddTexture(charLeftAnimation2);
             leftSideAnimation.AddTexture(charLeftTexture);
 
+            // Creation of the first rooms grid
             roomGrid.CreateRectangleArray();
             roomGrid.SetVectors();
             roomGrid.BoolGrid = new bool[roomGrid.Height, roomGrid.Width];
             roomGrid.LoadGrid();
 
-
+            // PC gets created and animations gets added.
             character = new PC(ballvector, ballGraphics, pcMovementSpeed, new List<Animation> { frontAnimation }, new Rectangle((int) ballvector.X, (int) ballvector.Y, 66, 108));
             currentCharacters.Add(character);
             character.AddAnimation(backAnimation);
@@ -167,6 +184,9 @@ namespace testgame {
 
             zone = new Zone(testZoneVector, zoneGraphics, currentCharacters, character, roomGrid);
 
+            world.CurrCharacters.Add(character);
+            world.CurrentZone = zone;
+            world.PlayableCharacter = character;
 
 
             debug = Content.Load<SpriteFont>("debug");
@@ -175,53 +195,63 @@ namespace testgame {
         protected override void Update(GameTime gameTime) {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) {
                 Exit();
-                roomGrid.WriteGrid();
             }
                 
             ui.UpdateStates();
+
+            // Horrible debug string.
             kukollon = "Zone Coordinates; X: " + zone.vector.X + " Y: " + zone.vector.Y + "     Ball Coordinates; X: " + character.vector.X + " Y: " + character.vector.Y +
                 menu.alpha + "   Frame Count " + currentFrameCount + "   Texture Count " + textureCount + "     " + roomGrid.Height + "     " + roomGrid.Width + "\n" 
                 + "Grid view: " + toggleGrid + "\n" + "Grid Edit: " + roomGrid.SetHitboxToggle;
             for (int i = 0; i < notAllowedKeys.Count; i++) {
                 kukollon += "   " + notAllowedKeys[i].ToString();
             }
-            zone.Move(ui.keyboardState, ui);
+
+            // Makes it possible to move in the zone
+            world.CurrentZone.Move(ui.keyboardState, ui);
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+
+            //The Menu.menu currently holds the key for the switch currently. Might change in the future.
+            //Case 0 - Main menu.
+            //Case 1 - First zone ; Currently the bedroom.
+            //Case 2 - Draws the settings menu.
 
             switch (menu.switchKey) {
                 case 0:
                     menu.Buttons(ui);
                     DrawMenu();
                     break;
-                // Main game;
                 case 1:
                     _spriteBatch.Begin();
-                    notAllowedKeys = ui.NotAllowedKeys(character, roomGrid);
-                    DrawZone(zone);
-                    DrawGrid(roomGrid);
+                    notAllowedKeys = ui.NotAllowedKeys(world.PlayableCharacter, world.CurrentZone.grid);
+                    DrawZone(world.CurrentZone);
+                    DrawGrid(world.CurrentZone.grid);
                     if (ui.DownKey(Keys.M)) {
                         menu.switchKey = 0;
                     }
                     if (settings.DevToggle) {
                         ToggleGridView(roomGrid);
-                        if (roomGrid.SetHitboxToggle) {
-                            roomGrid.SetHitBox(ui);
+                        if (world.CurrentZone.grid.SetHitboxToggle) {
+                            world.CurrentZone.grid.SetHitBox(ui);
                             ResetGrid(roomGrid);
                         }
                         if (ui.KeyPressedAndReleased(Keys.P)) {
-                            roomGrid.SetHitboxToggle = !roomGrid.SetHitboxToggle;
+                            world.CurrentZone.grid.SetHitboxToggle = !world.CurrentZone.grid.SetHitboxToggle;
+                        }
+                        if (ui.KeyPressedAndReleased(Keys.U)) {
+                            world.CurrentZone.grid.WriteGrid();
                         }
                         _spriteBatch.DrawString(debug, kukollon, new Vector2(0, 0), Color.White);
                     }
 
                     //roomGrid.SetHitBox(ui);
-                    DrawPlayableCharacter(character);
+                    DrawPlayableCharacter(world.PlayableCharacter);
                     _spriteBatch.End();
                     break;
                 // Settings
@@ -230,10 +260,6 @@ namespace testgame {
                     DrawSettings();
                     break;
                 case 2000:
-
-
-                    roomGrid.WriteGrid();
-
                     Exit();
                     break;
                 default:
@@ -241,7 +267,10 @@ namespace testgame {
             }
             base.Draw(gameTime);
         }
-        
+        /// <summary>
+        /// Resets the grid by pressing L.
+        /// </summary>
+        /// <param name="grid"></param>
         public void ResetGrid(Grid grid) {
             if (ui.DownKey(Keys.L)) {
                 for (int i = 0; i < grid.Height; i++) {
@@ -251,6 +280,10 @@ namespace testgame {
                 }
             }
         }
+        /// <summary>
+        /// With this method you can toggle if the grid should be drawn or not.
+        /// </summary>
+        /// <param name="grid">The grid that gets toggled</param>
         public void ToggleGridView(Grid grid) {
             if (ui.KeyPressedAndReleased(Keys.O)) {
                 if (toggleGrid) {
@@ -262,6 +295,10 @@ namespace testgame {
                 grid.showDisabledHitBoxes = !grid.showDisabledHitBoxes;
             }
         }
+        /// <summary>
+        /// Draws the grid ingame. Also makes sure the vectors of the grid are correct. Needs to be used currently for grid funcionality.
+        /// </summary>
+        /// <param name="grid">The grid getting drawn.</param>
         public void DrawGrid(Grid grid) {
             for (int i = 0; i < grid.Height; i++) {
                 for (int j = 0; j < grid.Width; j++) {
@@ -320,6 +357,11 @@ namespace testgame {
                 }
             }
         }
+        /// <summary>
+        /// Draws a characters animation. 
+        /// </summary>
+        /// <param name="animation">The animations that will get drawn</param>
+        /// <param name="character">The character that has the animation</param>
         public void DrawAnimation(Animation animation, Character character) {
             currentFrameCount = animation.frameCount;
             if (animation.currAnimation > animation.textureList.Count - 1) {
@@ -335,9 +377,16 @@ namespace testgame {
                 }
             }
         }
-        void DrawZone(World zone) {
+        /// <summary>
+        /// Draws a zone.
+        /// </summary>
+        /// <param name="zone">The zone that gets drawn</param>
+        void DrawZone(Zone zone) {
             _spriteBatch.Draw(zone.graphics.texture, zone.vector, Color.White);
         }
+        /// <summary>
+        /// Draws the main menu.
+        /// </summary>
         void DrawMenu() {
             _spriteBatch.Begin();
             menu.ColorAlhpaChange(ui);
@@ -366,6 +415,9 @@ namespace testgame {
             _spriteBatch.End();
 
         }
+        /// <summary>
+        /// Draws the settings in main menu.
+        /// </summary>
         public void DrawSettings() {
             _spriteBatch.Begin();
             settings.ColorAlhpaChange(ui);

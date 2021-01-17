@@ -7,10 +7,24 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 namespace testgame {
-    public abstract class World {
-        public WorldGraphics graphics;
-        public Vector2 vector;
-        public List<Character> currCharacters;
-        public PC pc;
+    public class World {
+        private List<Character> currCharacters;
+        private PC playableCharacter;
+        private Zone currentZone;
+
+        public List<Character> CurrCharacters { get { return currCharacters; } set { currCharacters = value; } }
+        public PC PlayableCharacter { get { return playableCharacter;  } set { playableCharacter = value; } }
+        public Zone CurrentZone { get { return currentZone; } set { currentZone = value; } }
+
+
+        public World(List<Character> currCharacters, PC playableCharacter, Zone currentZone) {
+            this.currCharacters = currCharacters;
+            this.playableCharacter = playableCharacter;
+            this.currentZone = currentZone;
+        }
+
+        public World() {
+            currCharacters = new List<Character>();
+        }
     }
 }
