@@ -163,3 +163,9 @@ C:\Users\Elev\Desktop\TestGame\testgame\bin\Debug\netcoreapp3.1\Content\enableDe
 C:\Users\Elev\Desktop\TestGame\testgame\bin\Debug\netcoreapp3.1\Content\return.xnb
 C:\Users\Elev\Desktop\TestGame\testgame\bin\Debug\netcoreapp3.1\Content\settingsTexture.xnb
 C:\Users\Elev\Desktop\TestGame\testgame\bin\Debug\netcoreapp3.1\Content\charHitboxTexture.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charHitboxTexture.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\enableDev.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\return.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\settingsTexture.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charfrontSmall.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\hallway.xnb

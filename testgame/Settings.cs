@@ -21,9 +21,15 @@ namespace testgame {
             
         }
         public Settings(Texture2D settingsTexture) {
-            developerButton = new Rectangle(12, 11, 709, 188);
-            returnButton = new Rectangle(12, 275, 390, 90);
+            developerButton = new Rectangle(Scale(12), Scale(11), Scale(709), Scale(188));
+            returnButton = new Rectangle(Scale(12), Scale(275), Scale(390), Scale(90));
             this.settingsTexture = settingsTexture;
+            devToggle = true;
+        }
+
+        //TODO: Fix correct scaling
+        private int Scale(int nmbr) {
+            return (int)( nmbr * 1.5 );
         }
 
         public void Buttons(UI ui, Menu menu) {

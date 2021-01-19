@@ -16,9 +16,11 @@ namespace testgame {
         public Zone[] connectedZones;
         public Graphics graphics;
         public Vector2 vector;
+        private Vector2 startVector;
         public List<Character> currCharacters;
         public PC pc;
-        
+
+        public Vector2 StartVector { get { return startVector; } set { startVector = value; } }
 
         public Zone(Vector2 vector, WorldGraphics graphics, List<Character> currentCharacters, PC pc, Grid grid) {
             this.vector = vector;

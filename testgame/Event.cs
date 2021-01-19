@@ -4,6 +4,6 @@ using System.Text;
 
 namespace testgame {
     public abstract class Event {
-
+        public World world;
     }
 }

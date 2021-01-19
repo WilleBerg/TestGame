@@ -105,23 +105,23 @@ namespace testgame {
         /// <returns></returns>
         public List<Keys> NotAllowedKeys(PC pc, Grid grid) {
             List<Keys> notAllowedKeys = new List<Keys>();
-            Rectangle tempD = new Rectangle(pc.hitbox.X + Game1.pcMovementSpeed + 4, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
-            Rectangle tempA = new Rectangle(pc.hitbox.X - Game1.pcMovementSpeed - 4, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
+            Rectangle tempD = new Rectangle(pc.hitbox.X + Game1.pcMovementSpeed + 5, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
+            Rectangle tempA = new Rectangle(pc.hitbox.X - Game1.pcMovementSpeed - 5, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
             Rectangle tempS = new Rectangle(pc.hitbox.X, pc.hitbox.Y + Game1.pcMovementSpeed + 5, pc.hitbox.Width, pc.hitbox.Height);
             Rectangle tempW = new Rectangle(pc.hitbox.X, pc.hitbox.Y - Game1.pcMovementSpeed - 5, pc.hitbox.Width, pc.hitbox.Height);
             for (int i = 0; i < grid.Height; i++) {
                 for (int j = 0; j < grid.Width; j++) {
-                    if (grid.BoolGrid[i,j]) {
-                        if (tempD.Intersects(grid.hitBoxArray[i,j]) && !notAllowedKeys.Contains(Keys.D)) {
+                    if (grid.hitBoxArray[i,j].WallBox) {
+                        if (tempD.Intersects(grid.hitBoxArray[i,j].rectangle) && !notAllowedKeys.Contains(Keys.D)) {
                             notAllowedKeys.Add(Keys.D);
                         }
-                        if (tempA.Intersects(grid.hitBoxArray[i, j]) && !notAllowedKeys.Contains(Keys.A)) {
+                        if (tempA.Intersects(grid.hitBoxArray[i, j].rectangle) && !notAllowedKeys.Contains(Keys.A)) {
                             notAllowedKeys.Add(Keys.A);
                         }
-                        if (tempS.Intersects(grid.hitBoxArray[i, j]) && !notAllowedKeys.Contains(Keys.S)) {
+                        if (tempS.Intersects(grid.hitBoxArray[i, j].rectangle) && !notAllowedKeys.Contains(Keys.S)) {
                             notAllowedKeys.Add(Keys.S);
                         }
-                        if (tempW.Intersects(grid.hitBoxArray[i, j]) && !notAllowedKeys.Contains(Keys.W)) {
+                        if (tempW.Intersects(grid.hitBoxArray[i, j].rectangle) && !notAllowedKeys.Contains(Keys.W)) {
                             notAllowedKeys.Add(Keys.W);
                         }
                     }

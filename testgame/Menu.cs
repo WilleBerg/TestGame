@@ -24,10 +24,14 @@ namespace testgame {
             alpha = 0;
             alphaSwitch = false;
             this.menuTexture = menuTexture;
-            startRec = new Rectangle(29, 357, 280, 80);
-            settingsRec = new Rectangle(28, 474, 420, 80);
-            exitRec = new Rectangle(30, 582, 180, 80);
+            startRec = new Rectangle((int) (29 * 1.5), (int) (357 * 1.5) , (int) (280 * 1.5), (int) (80 * 1.5));
+            settingsRec = new Rectangle(Scale(28, 1.5), Scale(474,1.5), Scale(420,1.5), Scale(80,1.5));
+            exitRec = new Rectangle(Scale(30, 1.5), Scale(582,1.5), Scale(180,1.5), Scale(80,1.5));
             recColor = new Color(Color.White, 1.0f);
+        }
+
+        private int Scale(int nmr, double scale) {
+            return (int)( nmr * scale );
         }
 
         /// <summary>

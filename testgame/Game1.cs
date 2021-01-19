@@ -10,8 +10,11 @@ namespace testgame {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public static int resX = 1280;
-        public static int resY = 720;
+        public static int resX = 1920;
+        public static int resY = 1080;
+
+        public static int targetResX = 1920;
+        public static int targetResY = 1080;
 
         public static int pcMovementSpeed = 5;
         public static int currentFrameCount = 0;
@@ -21,7 +24,7 @@ namespace testgame {
 
         bool toggleGrid = false;
 
-        World world = new World();
+        public static World world = new World();
 
 
         Texture2D charFrontTexture;
@@ -38,6 +41,8 @@ namespace testgame {
         Texture2D charLeftTexture;
         Texture2D rumTexture;
         Texture2D charHitboxTexture;
+        Texture2D hallwayTexture;
+        Texture2D testSprite;
 
         Texture2D charFrontAnimation1;
         Texture2D charFrontAnimation2;
@@ -71,11 +76,15 @@ namespace testgame {
 
         Zone zone = new Zone();
         ZoneGraphics zoneGraphics = new ZoneGraphics();
-        public Grid roomGrid = new Grid(160, 90, new Vector2(0,0), 12, 12, "FirstRoomHitbox.txt");
-        
-        
+        Zone hallwayZone = new Zone();
+        ZoneGraphics hallwayGraphics = new ZoneGraphics();
+        Grid roomGrid = new Grid(240, 135, 12, "FirstRoomHitbox.txt");
+        Grid hallwayGrid = new Grid(240, 135, 12, "SavedList.txt");
+        private FrameCounter _frameCounter = new FrameCounter();
 
         List<Character> currentCharacters = new List<Character>();
+
+        
 
         SpriteFont debug;
 
@@ -94,6 +103,7 @@ namespace testgame {
             _graphics.IsFullScreen = false;
             _graphics.PreferredBackBufferWidth = resX;
             _graphics.PreferredBackBufferHeight = resY;
+            //_graphics.ToggleFullScreen();
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -115,8 +125,10 @@ namespace testgame {
             charRightAnimation2 = Content.Load<Texture2D>("charRightAnimation2");
             charLeftAnimation1 = Content.Load<Texture2D>("charLeftAnimation1");
             charLeftAnimation2 = Content.Load<Texture2D>("charLeftAnimation2");
+            testSprite = Content.Load<Texture2D>("charfrontSmall");
 
 
+            hallwayTexture = Content.Load<Texture2D>("hallway");
             rumTexture = Content.Load<Texture2D>("rumstor3");
 
             gridTexture = Content.Load<Texture2D>("gridSquare");
@@ -143,6 +155,7 @@ namespace testgame {
 
             ballGraphics = new CharGraphics(charFrontTexture);
             zoneGraphics = new ZoneGraphics(rumTexture, resX, resY);
+            hallwayGraphics = new ZoneGraphics(hallwayTexture, resX, resY);
             menu = new Menu(menuTexture);
             settings = new Settings(settingsMenuTexture);
 
@@ -170,23 +183,33 @@ namespace testgame {
             leftSideAnimation.AddTexture(charLeftTexture);
 
             // Creation of the first rooms grid
-            roomGrid.CreateRectangleArray();
-            roomGrid.SetVectors();
-            roomGrid.BoolGrid = new bool[roomGrid.Height, roomGrid.Width];
+            roomGrid.CreateHitBoxes();
             roomGrid.LoadGrid();
+            
+            hallwayGrid.CreateHitBoxes();
+            hallwayGrid.LoadGrid();
+
+            
+            
 
             // PC gets created and animations gets added.
-            character = new PC(ballvector, ballGraphics, pcMovementSpeed, new List<Animation> { frontAnimation }, new Rectangle((int) ballvector.X, (int) ballvector.Y, 66, 108));
+            character = new PC(ballvector, ballGraphics, pcMovementSpeed, new List<Animation> { frontAnimation }, new Rectangle((int) ballvector.X, (int) ballvector.Y, (int) (66 * 1.5) , (int) (108 * 1.5)));
             currentCharacters.Add(character);
             character.AddAnimation(backAnimation);
             character.AddAnimation(rightSideAnimation);
             character.AddAnimation(leftSideAnimation);
 
             zone = new Zone(testZoneVector, zoneGraphics, currentCharacters, character, roomGrid);
+            hallwayZone = new Zone(new Vector2(0, 0), hallwayGraphics, currentCharacters, character, hallwayGrid);
 
             world.CurrCharacters.Add(character);
             world.CurrentZone = zone;
             world.PlayableCharacter = character;
+
+            for (int i = 97; i < 108; i++) {
+                roomGrid.hitBoxArray[37, i].connectedZone = hallwayZone;
+            }
+
 
 
             debug = Content.Load<SpriteFont>("debug");
@@ -202,7 +225,7 @@ namespace testgame {
             // Horrible debug string.
             kukollon = "Zone Coordinates; X: " + zone.vector.X + " Y: " + zone.vector.Y + "     Ball Coordinates; X: " + character.vector.X + " Y: " + character.vector.Y +
                 menu.alpha + "   Frame Count " + currentFrameCount + "   Texture Count " + textureCount + "     " + roomGrid.Height + "     " + roomGrid.Width + "\n" 
-                + "Grid view: " + toggleGrid + "\n" + "Grid Edit: " + roomGrid.SetHitboxToggle;
+                + "Grid view: " + toggleGrid + "\n" + "Grid Edit: " + roomGrid.SetHitboxToggle +  " \n \n \n" + world.CurrentZone.grid.hitBoxArray[0,0].ToString() + " Not allowed keys: ";
             for (int i = 0; i < notAllowedKeys.Count; i++) {
                 kukollon += "   " + notAllowedKeys[i].ToString();
             }
@@ -222,6 +245,15 @@ namespace testgame {
             //Case 1 - First zone ; Currently the bedroom.
             //Case 2 - Draws the settings menu.
 
+            var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            _frameCounter.Update(deltaTime);
+
+            var fps = string.Format("FPS: {0}", _frameCounter.AverageFramesPerSecond);
+
+            kukollon += "FPS: " + fps;
+
+
             switch (menu.switchKey) {
                 case 0:
                     menu.Buttons(ui);
@@ -238,7 +270,7 @@ namespace testgame {
                     if (settings.DevToggle) {
                         ToggleGridView(roomGrid);
                         if (world.CurrentZone.grid.SetHitboxToggle) {
-                            world.CurrentZone.grid.SetHitBox(ui);
+                            world.CurrentZone.grid.SetHitbox(ui);
                             ResetGrid(roomGrid);
                         }
                         if (ui.KeyPressedAndReleased(Keys.P)) {
@@ -275,7 +307,8 @@ namespace testgame {
             if (ui.DownKey(Keys.L)) {
                 for (int i = 0; i < grid.Height; i++) {
                     for (int j = 0; j < grid.Width; j++) {
-                        grid.BoolGrid[i, j] = false;
+                        grid.hitBoxArray[i,j].WallBox = false;
+                        grid.hitBoxArray[i, j].ZoneBox = false;
                     }
                 }
             }
@@ -292,7 +325,7 @@ namespace testgame {
                     toggleGrid = true;
                 }
             } else if (ui.KeyPressedAndReleased(Keys.I)) {
-                grid.showDisabledHitBoxes = !grid.showDisabledHitBoxes;
+                grid.ShowDisabledHitBoxes = !grid.ShowDisabledHitBoxes;
             }
         }
         /// <summary>
@@ -302,12 +335,15 @@ namespace testgame {
         public void DrawGrid(Grid grid) {
             for (int i = 0; i < grid.Height; i++) {
                 for (int j = 0; j < grid.Width; j++) {
-                    grid.hitBoxArray[i, j].X = (int)grid.vectorDelta.X + (int)grid.VectorArray[i, j].X;
-                    grid.hitBoxArray[i, j].Y = (int)grid.vectorDelta.Y + (int)grid.VectorArray[i, j].Y;
-                    if (grid.BoolGrid[i,j] && toggleGrid) {
-                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i,j], Color.Red);
-                    } else if (toggleGrid && grid.showDisabledHitBoxes) {
-                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j], Color.White);
+                    grid.hitBoxArray[i, j].rectangle.X = (int)grid.vectorDelta.X + (int)grid.hitBoxArray[i, j].Position.X;
+                    grid.hitBoxArray[i, j].rectangle.Y = (int)grid.vectorDelta.Y + (int)grid.hitBoxArray[i, j].Position.Y;
+                    grid.hitBoxArray[i, j].ChangeZone(world.PlayableCharacter);
+                    if (grid.hitBoxArray[i,j].WallBox && toggleGrid) {
+                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i,j].rectangle, Color.Red);
+                    } else if (toggleGrid && grid.hitBoxArray[i,j].ZoneBox) {
+                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j].rectangle, Color.Blue);
+                    } else if (toggleGrid && grid.ShowDisabledHitBoxes) {
+                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j].rectangle, Color.White);
                     }
                 }
             }

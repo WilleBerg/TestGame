@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Elev/Desktop/TestGame/testgame/Content/charback.png</SourceFile>
-  <SourceTime>2021-01-15T15:40:33.3615411+01:00</SourceTime>
-  <DestFile>C:/Users/Elev/Desktop/TestGame/testgame/Content/bin/DesktopGL/charback.xnb</DestFile>
-  <DestTime>2021-01-16T14:58:31.7077868+01:00</DestTime>
+  <SourceFile>C:/Users/willi/Desktop/testgame/testgame/Content/charback.png</SourceFile>
+  <SourceTime>2021-01-19T17:07:20.9957573+01:00</SourceTime>
+  <DestFile>C:/Users/willi/Desktop/testgame/testgame/Content/bin/DesktopGL/charback.xnb</DestFile>
+  <DestTime>2021-01-19T19:01:12.8515932+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

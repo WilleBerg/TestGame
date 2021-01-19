@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Elev/Desktop/TestGame/testgame/Content/charHitboxTexture.png</SourceFile>
-  <SourceTime>2021-01-16T21:55:55.7217109+01:00</SourceTime>
-  <DestFile>C:/Users/Elev/Desktop/TestGame/testgame/Content/bin/DesktopGL/Content/charHitboxTexture.xnb</DestFile>
-  <DestTime>2021-01-16T21:56:16.0155292+01:00</DestTime>
+  <SourceFile>C:/Users/willi/Desktop/testgame/testgame/Content/charHitboxTexture.png</SourceFile>
+  <SourceTime>2021-01-17T21:40:39.2357869+01:00</SourceTime>
+  <DestFile>C:/Users/willi/Desktop/testgame/testgame/Content/bin/DesktopGL/Content/charHitboxTexture.xnb</DestFile>
+  <DestTime>2021-01-17T21:41:29.0714927+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
