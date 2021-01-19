@@ -1,11 +1,12 @@
 # TestGame
 
 
-v0.017 - Rewrote the whole Grid/Hitbox system. Changing rooms now work. Changed default res, now 1920x1080. 
+v0.017 - Rewrote the whole Grid/Hitbox system. Changing rooms now work. Changed default res, now 1920x1080. Made the Grid save files alot more efficient.
 
-		The Grid system now works kind of the same. But a grid now has a list of Hitboxes, which can have different properties. For now there is only Wall hitbox and Zone hitbox.
+		The Grid system now works kind of the same. But a grid now has an array of Hitboxes, which can have different properties. For now there is only Wall hitbox and Zone hitbox.
 			The zone hitbox changes the zone when it collides with the player hitbox.
 			
+
 
 TODO:
 - Comment new methods in Grid/Hitbox.
@@ -13,7 +14,12 @@ TODO:
 - Create zone background class and create a background sprite.
 - Fix better scaling. Make it possible to switch between 1080p and 720p
 
+------------------------------------------------------------------------------------------
+
+
 v0.0161 - Commented methods. Added event class. Fixed up main class. Last commit from laptop for now.
+
+------------------------------------------------------------------------------------------
 
 v0.016 - Grid now working as intended. If developer settings is enabled, you can now show the hitbox, both enable and
 disabled at the same time or seperate. You can edit the hitboxes with left mouse. Fixed AD and WS bug. Added settings.
@@ -26,6 +32,8 @@ TODO:
 - Add zone startVector.
 - Switching room functionality.
 
+------------------------------------------------------------------------------------------
+
 
 v0.015 - functionality of grid is now somewhat working, needs some fine tuning
 
@@ -34,6 +42,8 @@ TODO:
 - Add grid maker - basically done
 - finish room1 - basically done
 - fix AD animation bug - DONE
+
+------------------------------------------------------------------------------------------
 
 v0.0141 - test commit from laptop
 
