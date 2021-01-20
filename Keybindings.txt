@@ -1,14 +1,3 @@
-Developer settings keybindings
-
-
-Toggle Grid - O
-Show disabled hitboxes - I
-Write grid to txt - U
-Toggle Edit grid - P
-	In edit grid : Clear Grid L
-	
-
-
 Standard Keybindings
 
 Up - W
@@ -17,3 +6,19 @@ Right - D
 Left - A
 
 Return to Main menu - M
+
+
+
+
+Developer settings keybindings
+
+
+Toggle Grid - O
+Show disabled hitboxes - I
+Write grid to txt - U
+Toggle Edit grid - P
+	In edit grid : Clear Grid L
+						Clear grid now safe to use without clearing the hitbox file.
+	
+
+

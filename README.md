@@ -4,7 +4,7 @@
 v0.017 - Rewrote the whole Grid/Hitbox system. Changing rooms now work. Changed default res, now 1920x1080. Made the Grid save files alot more efficient.
 
 		The Grid system now works kind of the same. But a grid now has an array of Hitboxes, which can have different properties. For now there is only Wall hitbox and Zone hitbox.
-			The zone hitbox changes the zone when it collides with the player hitbox.
+			The zone hitbox changes the zone when it collides with the player hitbox. Every zone hitbox has a connected zone.
 			
 
 
@@ -13,6 +13,7 @@ TODO:
 - Make the hallway sprite better.
 - Create zone background class and create a background sprite.
 - Fix better scaling. Make it possible to switch between 1080p and 720p
+- Add zone switch animation. (Fade to black)
 
 ------------------------------------------------------------------------------------------
 
