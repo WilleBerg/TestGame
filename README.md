@@ -1,6 +1,24 @@
 # TestGame
 
 
+
+
+
+
+v0.018 - Added background class. It has a texture that gets put in the foreground and moves slower than a regular zone. Makes it look like its further away. Sorted the textures in to folders so that
+testgame/Content folder isnt cluttered. Also fixed a small bug when switching zone. Zone switch seems to work fully now. Cleaned up Grid class.
+
+TODO:
+- Comment new methods in Grid/Hitbox.
+- Make hallway sprite better.
+- Fix scaling.
+- Make a better background sprite.
+- Add zone switch animation.
+- Add zone startvector.
+
+
+------------------------------------------------------------------------------------------
+
 v0.017 - Rewrote the whole Grid/Hitbox system. Changing rooms now work. Changed default res, now 1920x1080. Made the Grid save files alot more efficient.
 
 		The Grid system now works kind of the same. But a grid now has an array of Hitboxes, which can have different properties. For now there is only Wall hitbox and Zone hitbox.

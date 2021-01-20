@@ -169,3 +169,36 @@ C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\return.
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\settingsTexture.xnb
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\charfrontSmall.xnb
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\hallway.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Background\tree1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\tree1large.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Background\tree1large.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charback.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charbackanimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charbackanimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charfronanimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charfronanimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charfront.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charHitboxTexture.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charLeft.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charLeftAnimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charLeftAnimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charRight.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charRightAnimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Large\charRightAnimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Tiny\charfrontSmall - kopia.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Tiny\charfrontSmall.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Misc\gridSquare - kopia.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Misc\gridSquare.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\UI\Large\copy.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\UI\Large\enableDev.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\UI\Large\enableDevcopy.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\UI\Large\exit.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\UI\Large\menu.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\UI\Large\return.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\UI\Large\settings.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\UI\Large\settingsTexture.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\UI\Large\start.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Zone\Large\hallway.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Zone\Large\rumstor.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Zone\Large\rumstor3.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Background\hallwayBackgroundLarge.xnb

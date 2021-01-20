@@ -27,7 +27,8 @@ namespace testgame {
         public static World world = new World();
 
 
-        Texture2D charFrontTexture;
+        
+        // Menu/UI textures
         Texture2D testZone;
         Texture2D menuTexture;
         Texture2D startTexture;
@@ -36,14 +37,25 @@ namespace testgame {
         Texture2D devToggleTexture;
         Texture2D returnTexture;
         Texture2D exitTexture;
+
+
+        //Room textures
+        Texture2D rumTexture;
+        Texture2D hallwayTexture;
+
+        //Background textures
+        Texture2D tree1LargeTexture;
+        Texture2D tree1SmallTexture;
+        Texture2D hallwayBackgroundLarge;
+
+
+        Texture2D testSprite;
+
+        // Main character textures
         Texture2D charBackTexture;
         Texture2D charRightTexture;
         Texture2D charLeftTexture;
-        Texture2D rumTexture;
-        Texture2D charHitboxTexture;
-        Texture2D hallwayTexture;
-        Texture2D testSprite;
-
+        Texture2D charFrontTexture;
         Texture2D charFrontAnimation1;
         Texture2D charFrontAnimation2;
         Texture2D charBackAnimation1;
@@ -52,7 +64,7 @@ namespace testgame {
         Texture2D charRightAnimation2;
         Texture2D charLeftAnimation1;
         Texture2D charLeftAnimation2;
-
+        Texture2D charHitboxTexture;
 
 
         Texture2D gridTexture;
@@ -83,8 +95,9 @@ namespace testgame {
         private FrameCounter _frameCounter = new FrameCounter();
 
         List<Character> currentCharacters = new List<Character>();
+        Background hallwayBackground = new Background();
 
-        
+
 
         SpriteFont debug;
 
@@ -113,43 +126,41 @@ namespace testgame {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Character and character animation textures
-            charFrontTexture = Content.Load<Texture2D>("charfront");
-            charBackTexture = Content.Load<Texture2D>("charback");
-            charRightTexture = Content.Load<Texture2D>("charRight");
-            charLeftTexture = Content.Load<Texture2D>("charLeft");
-            charFrontAnimation1 = Content.Load<Texture2D>("charfronanimation1");
-            charFrontAnimation2 = Content.Load<Texture2D>("charfronanimation2");
-            charBackAnimation1 = Content.Load<Texture2D>("charbackanimation1");
-            charBackAnimation2 = Content.Load<Texture2D>("charbackanimation2");
-            charRightAnimation1 = Content.Load<Texture2D>("charRightAnimation1");
-            charRightAnimation2 = Content.Load<Texture2D>("charRightAnimation2");
-            charLeftAnimation1 = Content.Load<Texture2D>("charLeftAnimation1");
-            charLeftAnimation2 = Content.Load<Texture2D>("charLeftAnimation2");
-            testSprite = Content.Load<Texture2D>("charfrontSmall");
+            charFrontTexture = Content.Load<Texture2D>("Character/Large/charfront");
+            charBackTexture = Content.Load<Texture2D>("Character/Large/charback");
+            charRightTexture = Content.Load<Texture2D>("Character/Large/charRight");
+            charLeftTexture = Content.Load<Texture2D>("Character/Large/charLeft");
+            charFrontAnimation1 = Content.Load<Texture2D>("Character/Large/charfronanimation1");
+            charFrontAnimation2 = Content.Load<Texture2D>("Character/Large/charfronanimation2");
+            charBackAnimation1 = Content.Load<Texture2D>("Character/Large/charbackanimation1");
+            charBackAnimation2 = Content.Load<Texture2D>("Character/Large/charbackanimation2");
+            charRightAnimation1 = Content.Load<Texture2D>("Character/Large/charRightAnimation1");
+            charRightAnimation2 = Content.Load<Texture2D>("Character/Large/charRightAnimation2");
+            charLeftAnimation1 = Content.Load<Texture2D>("Character/Large/charLeftAnimation1");
+            charLeftAnimation2 = Content.Load<Texture2D>("Character/Large/charLeftAnimation2");
+            charHitboxTexture = Content.Load<Texture2D>("Character/Large/charHitboxTexture");
+            testSprite = Content.Load<Texture2D>("Character/Tiny/charfrontSmall");
 
+            // Room
+            hallwayTexture = Content.Load<Texture2D>("Zone/Large/hallway");
+            rumTexture = Content.Load<Texture2D>("Zone/Large/rumstor3");
 
-            hallwayTexture = Content.Load<Texture2D>("hallway");
-            rumTexture = Content.Load<Texture2D>("rumstor3");
+            // Background
+            tree1LargeTexture = Content.Load<Texture2D>("Background/tree1large");
+            tree1SmallTexture = Content.Load<Texture2D>("Background/tree1");
+            hallwayBackgroundLarge = Content.Load<Texture2D>("Background/hallwayBackgroundLarge");
 
-            gridTexture = Content.Load<Texture2D>("gridSquare");
+            gridTexture = Content.Load<Texture2D>("Misc/gridSquare");
 
-            settingsMenuTexture = Content.Load<Texture2D>("settingsTexture");
-
-            returnTexture = Content.Load<Texture2D>("return");
-
-            devToggleTexture = Content.Load<Texture2D>("enableDev");
-
-            charHitboxTexture = Content.Load<Texture2D>("charHitboxTexture");
-
+            // Menu/UI
+            settingsMenuTexture = Content.Load<Texture2D>("UI/Large/settingsTexture");
+            returnTexture = Content.Load<Texture2D>("UI/Large/return");
+            devToggleTexture = Content.Load<Texture2D>("UI/Large/enableDev");
             testZone = Content.Load<Texture2D>("game1testpic");
-
-            menuTexture = Content.Load<Texture2D>("menu");
-
-            startTexture = Content.Load<Texture2D>("start");
-
-            settingsTexture = Content.Load<Texture2D>("settings");
-
-            exitTexture = Content.Load<Texture2D>("exit");
+            menuTexture = Content.Load<Texture2D>("UI/Large/menu");
+            startTexture = Content.Load<Texture2D>("UI/Large/start");
+            settingsTexture = Content.Load<Texture2D>("UI/Large/settings");
+            exitTexture = Content.Load<Texture2D>("UI/Large/exit");
 
             ui = new UI();
 
@@ -189,24 +200,28 @@ namespace testgame {
             hallwayGrid.CreateHitBoxes();
             hallwayGrid.LoadGrid();
 
-            
+
             
 
             // PC gets created and animations gets added.
-            character = new PC(ballvector, ballGraphics, pcMovementSpeed, new List<Animation> { frontAnimation }, new Rectangle((int) ballvector.X, (int) ballvector.Y, (int) (66 * 1.5) , (int) (108 * 1.5)));
+            character = new PC(ballvector, ballGraphics, pcMovementSpeed, new List<Animation> { frontAnimation }, 
+                        new Rectangle((int) ballvector.X, (int) ballvector.Y, (int) (66 * 1.5) , (int) (108 * 1.5)));
+
             currentCharacters.Add(character);
             character.AddAnimation(backAnimation);
             character.AddAnimation(rightSideAnimation);
             character.AddAnimation(leftSideAnimation);
 
             zone = new Zone(testZoneVector, zoneGraphics, currentCharacters, character, roomGrid);
-            hallwayZone = new Zone(new Vector2(0, 0), hallwayGraphics, currentCharacters, character, hallwayGrid);
+
+            hallwayBackground = new Background(hallwayBackgroundLarge, new Vector2(0, 0), 3);
+            hallwayZone = new Zone(new Vector2(0, 0), hallwayGraphics, currentCharacters, character, hallwayGrid, hallwayBackground);
 
             world.CurrCharacters.Add(character);
             world.CurrentZone = zone;
             world.PlayableCharacter = character;
 
-            for (int i = 97; i < 108; i++) {
+            for (int i = 97; i < 109; i++) {
                 roomGrid.hitBoxArray[37, i].connectedZone = hallwayZone;
             }
 
@@ -229,7 +244,7 @@ namespace testgame {
             for (int i = 0; i < notAllowedKeys.Count; i++) {
                 kukollon += "   " + notAllowedKeys[i].ToString();
             }
-
+            kukollon +=  "   Zone has background?  " + world.CurrentZone.HasBackground + "  ";
             // Makes it possible to move in the zone
             world.CurrentZone.Move(ui.keyboardState, ui);
 
@@ -253,11 +268,16 @@ namespace testgame {
 
             kukollon += "FPS: " + fps;
 
+            Console.WriteLine("Fps: " + fps);
+            Console.WriteLine(kukollon);
 
             switch (menu.switchKey) {
                 case 0:
                     menu.Buttons(ui);
                     DrawMenu();
+                    _spriteBatch.Begin();
+                    _spriteBatch.Draw(tree1SmallTexture, new Vector2(0, 0), Color.White);
+                    _spriteBatch.End();
                     break;
                 case 1:
                     _spriteBatch.Begin();
@@ -418,7 +438,11 @@ namespace testgame {
         /// </summary>
         /// <param name="zone">The zone that gets drawn</param>
         void DrawZone(Zone zone) {
+            if (zone.HasBackground) {
+                _spriteBatch.Draw(zone.Background.Texture, zone.Background.vector, Color.White);
+            }
             _spriteBatch.Draw(zone.graphics.texture, zone.vector, Color.White);
+
         }
         /// <summary>
         /// Draws the main menu.

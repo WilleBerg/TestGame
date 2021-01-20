@@ -15,7 +15,6 @@ namespace testgame {
         private bool showDisabledHitboxes;
         private bool setHitboxToggle;
         public Vector2 vectorDelta;
-        private int clickCount;
         public Hitbox[,] hitBoxArray;
 
         public bool SetHitboxToggle { get { return setHitboxToggle; } set { setHitboxToggle = value; } }
@@ -34,7 +33,6 @@ namespace testgame {
             this.saveFile = saveFile;
             showDisabledHitboxes = false;
             setHitboxToggle = false;
-            clickCount = 0;
             hitBoxArray = new Hitbox[height, width];
         }
 

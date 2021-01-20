@@ -4,36 +4,50 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Background/hallwayBackgroundLarge.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Background/tree1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Background/tree1large.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/ball.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charback.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charbackanimation1.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charbackanimation2.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charfronanimation1.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charfronanimation2.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charfront.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charfrontSmall.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charHitboxTexture.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charLeft.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charLeftAnimation1.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charLeftAnimation2.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charRight.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charRightAnimation1.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/charRightAnimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charback.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charbackanimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charbackanimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charfronanimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charfronanimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charfront.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charHitboxTexture.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charLeft.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charLeftAnimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charLeftAnimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charRight.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charRightAnimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charRightAnimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Tiny/charfrontSmall - kopia.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Tiny/charfrontSmall.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/debug.spritefont</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/enableDev.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/exit.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/game1testpic.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/gridSquare.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/hallway.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/menu.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/return.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/rumstor.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/rumstor3.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/settings.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/settingsTexture.png</File>
-    <File>C:/Users/willi/Desktop/testgame/testgame/Content/start.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Misc/gridSquare - kopia.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Misc/gridSquare.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/UI/Large/copy.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/UI/Large/enableDev.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/UI/Large/enableDevcopy.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/UI/Large/exit.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/UI/Large/menu.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/UI/Large/return.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/UI/Large/settings.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/UI/Large/settingsTexture.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/UI/Large/start.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Zone/Large/hallway.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Zone/Large/rumstor.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Zone/Large/rumstor3.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
