@@ -37,13 +37,14 @@ namespace testgame {
             this.grid = grid;
             this.hasBackground = false;
         }
-        public Zone(Vector2 vector, WorldGraphics graphics, List<Character> currentCharacters, PC pc, Grid grid, Background background) {
+        public Zone(Vector2 vector, WorldGraphics graphics, List<Character> currentCharacters, PC pc, Grid grid, Background background, Vector2 startVector) {
             this.vector = vector;
             this.graphics = graphics;
             currCharacters = currentCharacters;
             this.pc = pc;
             this.grid = grid;
             this.background = background;
+            this.startVector = startVector;
             hasBackground = true;
         }
 

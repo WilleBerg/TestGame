@@ -1,9 +1,26 @@
-# TestGame
+# TestGame - Small game im making in C# Monogame
 
 
 
 
 
+
+v0.019 - Remade the whole hallway sprite. Added startvector for hallwayRoom and made sure the hallway sprite spawns in the right place. Also added hitboxes for hallwayRoom.
+
+TODO:
+- Still need to comment Grid/Hitbox.
+- Fix scaling.
+- Add zone switch animation.
+- Maybe make a better background sprite.
+- Remake bedroom sprite.
+- Create a save character and zone pos for easier zone adding.
+- Fix small bug when adding hitboxes. First one always turns blue.
+- Read up on loading and unloading in Monogame.
+- Maybe change hitbox saving file type.
+- Add talk hitbox and interact hitbox.
+- Loading feels like its taking a long time. Read up on how to make it faster.
+
+------------------------------------------------------------------------------------------
 
 v0.018 - Added background class. It has a texture that gets put in the foreground and moves slower than a regular zone. Makes it look like its further away. Sorted the textures in to folders so that
 testgame/Content folder isnt cluttered. Also fixed a small bug when switching zone. Zone switch seems to work fully now. Cleaned up Grid class.

@@ -46,7 +46,7 @@ namespace testgame {
         public void SetHitbox(UI ui) {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
-                    if (ui.Musknappar() && ui.RecChecker(hitBoxArray[i, j].rectangle)) {
+                    if (ui.LeftMousePressed() && ui.RecChecker(hitBoxArray[i, j].rectangle)) {
                         hitBoxArray[i, j].SetHitbox();
                     }
 

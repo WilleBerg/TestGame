@@ -11,6 +11,7 @@ namespace testgame {
         private Vector2 position;
         private int clickCount;
         public Zone connectedZone;
+        
 
         public Vector2 Position { get { return position; } set { position = value; } }
         public bool WallBox { get { return wallBox; } set { wallBox = value; } }
@@ -40,13 +41,19 @@ namespace testgame {
             if (clickCount == 0) {
                 WallBox = true;
                 ZoneBox = false;
-                clickCount++;
+                if (Game1.ui.Musknappar()) {
+                    clickCount++;
+                }
             } else if (clickCount == 1) {
                 WallBox = false;
                 ZoneBox = true;
-                clickCount++;
+                if (Game1.ui.Musknappar()) {
+                    clickCount++;
+                }
             } else if (clickCount == 2) {
-                clickCount = 0;
+                if (Game1.ui.Musknappar()) {
+                    clickCount = 0;
+                }
                 WallBox = false;
                 ZoneBox = false;
             }
@@ -54,6 +61,8 @@ namespace testgame {
 
         public void ChangeZone(PC pc) {
             if (pc.hitbox.Intersects(rectangle) && zoneBox) {
+                Game1.world.PlayableCharacter.vector.X = connectedZone.StartVector.X;
+                Game1.world.PlayableCharacter.vector.Y = connectedZone.StartVector.Y;
                 Game1.world.CurrentZone = connectedZone;
             }
         }

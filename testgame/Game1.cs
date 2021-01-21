@@ -76,7 +76,7 @@ namespace testgame {
 
         CharGraphics ballGraphics = new CharGraphics();
 
-        UI ui = new UI();
+        public static UI ui = new UI();
 
         Settings settings = new Settings();
 
@@ -91,7 +91,7 @@ namespace testgame {
         Zone hallwayZone = new Zone();
         ZoneGraphics hallwayGraphics = new ZoneGraphics();
         Grid roomGrid = new Grid(240, 135, 12, "FirstRoomHitbox.txt");
-        Grid hallwayGrid = new Grid(240, 135, 12, "SavedList.txt");
+        Grid hallwayGrid = new Grid(240, 135, 12, "HallwayRoomHitbox.txt");
         private FrameCounter _frameCounter = new FrameCounter();
 
         List<Character> currentCharacters = new List<Character>();
@@ -142,7 +142,7 @@ namespace testgame {
             testSprite = Content.Load<Texture2D>("Character/Tiny/charfrontSmall");
 
             // Room
-            hallwayTexture = Content.Load<Texture2D>("Zone/Large/hallway");
+            hallwayTexture = Content.Load<Texture2D>("Zone/Large/hallwayv2");
             rumTexture = Content.Load<Texture2D>("Zone/Large/rumstor3");
 
             // Background
@@ -214,8 +214,10 @@ namespace testgame {
 
             zone = new Zone(testZoneVector, zoneGraphics, currentCharacters, character, roomGrid);
 
-            hallwayBackground = new Background(hallwayBackgroundLarge, new Vector2(0, 0), 3);
-            hallwayZone = new Zone(new Vector2(0, 0), hallwayGraphics, currentCharacters, character, hallwayGrid, hallwayBackground);
+            hallwayBackground = new Background(hallwayBackgroundLarge, new Vector2(-200, -330), 3);
+            hallwayZone = new Zone(new Vector2(0, -456), hallwayGraphics, currentCharacters, character, hallwayGrid, hallwayBackground, new Vector2(826, 456));
+
+            // -280
 
             world.CurrCharacters.Add(character);
             world.CurrentZone = zone;
@@ -238,9 +240,9 @@ namespace testgame {
             ui.UpdateStates();
 
             // Horrible debug string.
-            kukollon = "Zone Coordinates; X: " + zone.vector.X + " Y: " + zone.vector.Y + "     Ball Coordinates; X: " + character.vector.X + " Y: " + character.vector.Y +
+            kukollon = "Zone Coordinates; X: " + world.CurrentZone.vector.X + " Y: " + world.CurrentZone.vector.Y + "     Ball Coordinates; X: " + character.vector.X + " Y: " + character.vector.Y +
                 menu.alpha + "   Frame Count " + currentFrameCount + "   Texture Count " + textureCount + "     " + roomGrid.Height + "     " + roomGrid.Width + "\n" 
-                + "Grid view: " + toggleGrid + "\n" + "Grid Edit: " + roomGrid.SetHitboxToggle +  " \n \n \n" + world.CurrentZone.grid.hitBoxArray[0,0].ToString() + " Not allowed keys: ";
+                + "Grid view: " + toggleGrid + "\n" + "Grid Edit: " + world.CurrentZone.grid.SetHitboxToggle +  " \n \n \n" + world.CurrentZone.grid.hitBoxArray[0,0].ToString() + " Not allowed keys: ";
             for (int i = 0; i < notAllowedKeys.Count; i++) {
                 kukollon += "   " + notAllowedKeys[i].ToString();
             }
@@ -267,6 +269,7 @@ namespace testgame {
             var fps = string.Format("FPS: {0}", _frameCounter.AverageFramesPerSecond);
 
             kukollon += "FPS: " + fps;
+            kukollon += "\n Mouse Pos: X; " + ui.mus.X + " Y; " + ui.mus.Y;
 
             Console.WriteLine("Fps: " + fps);
             Console.WriteLine(kukollon);
@@ -288,10 +291,10 @@ namespace testgame {
                         menu.switchKey = 0;
                     }
                     if (settings.DevToggle) {
-                        ToggleGridView(roomGrid);
+                        ToggleGridView(world.CurrentZone.grid);
                         if (world.CurrentZone.grid.SetHitboxToggle) {
                             world.CurrentZone.grid.SetHitbox(ui);
-                            ResetGrid(roomGrid);
+                            ResetGrid(world.CurrentZone.grid);
                         }
                         if (ui.KeyPressedAndReleased(Keys.P)) {
                             world.CurrentZone.grid.SetHitboxToggle = !world.CurrentZone.grid.SetHitboxToggle;
