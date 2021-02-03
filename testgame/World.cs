@@ -11,10 +11,11 @@ namespace testgame {
         private List<Character> currCharacters;
         private PC playableCharacter;
         private Zone currentZone;
-
+        private Game1.LoadStates currentLoadState;
         public List<Character> CurrCharacters { get { return currCharacters; } set { currCharacters = value; } }
         public PC PlayableCharacter { get { return playableCharacter;  } set { playableCharacter = value; } }
         public Zone CurrentZone { get { return currentZone; } set { currentZone = value; } }
+        public Game1.LoadStates CurrentLoadState { get { return currentLoadState; } set { currentLoadState = value; } }
 
 
         public World(List<Character> currCharacters, PC playableCharacter, Zone currentZone) {
@@ -26,5 +27,6 @@ namespace testgame {
         public World() {
             currCharacters = new List<Character>();
         }
+
     }
 }

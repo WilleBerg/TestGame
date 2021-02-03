@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Background/black.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Background/hallwayBackgroundLarge.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Background/tree1.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Background/tree1large.png</File>
@@ -42,6 +43,7 @@
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Zone/Large/rumstor3.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

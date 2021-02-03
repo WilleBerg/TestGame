@@ -16,6 +16,7 @@ namespace testgame {
         private bool setHitboxToggle;
         public Vector2 vectorDelta;
         public Hitbox[,] hitBoxArray;
+        
 
         public bool SetHitboxToggle { get { return setHitboxToggle; } set { setHitboxToggle = value; } }
         public bool ShowDisabledHitBoxes { get { return showDisabledHitboxes; } set { showDisabledHitboxes = value; } }
@@ -36,6 +37,9 @@ namespace testgame {
             hitBoxArray = new Hitbox[height, width];
         }
 
+        /// <summary>
+        /// Fills the hitbox array with default hitboxes, the size Grid.HitboxSize.
+        /// </summary>
         public void CreateHitBoxes() {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
@@ -43,6 +47,11 @@ namespace testgame {
                 }
             }
         }
+        /// <summary>
+        /// Changes the property of the hitbox you click on while ingame.
+        /// Only works in devmode and gridEdit toggled.
+        /// </summary>
+        /// <param name="ui"></param>
         public void SetHitbox(UI ui) {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
@@ -53,6 +62,9 @@ namespace testgame {
                 }
             }
         }
+        /// <summary>
+        /// Writes the whole hitboxgrid to a .txt file.
+        /// </summary>
         public void WriteGrid() {
             TextWriter tw = new StreamWriter("SavedList.txt");
             for (int i = 0; i < Height; i++) {
@@ -75,6 +87,9 @@ namespace testgame {
             }
             tw.Close();
         }
+        /// <summary>
+        /// Loades the grid from the saveFile .txt file.
+        /// </summary>
         public void LoadGrid() {
             string[] allLines = File.ReadAllLines(saveFile);
             for (int i = 0; i < allLines.Length; i++) {

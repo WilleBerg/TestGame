@@ -36,7 +36,9 @@ namespace testgame {
             if (ui.Musknappar() && ui.RecChecker(developerButton)) {
                 devToggle = !devToggle;
             } else if (ui.Musknappar() && ui.RecChecker(returnButton)) {
-                menu.switchKey = 0;
+                Game1.currentGameState = Game1.GameState.TitleScreen;
+                Game1.world.CurrentLoadState = Game1.LoadStates.TitleScreen;
+                
             }
         }
         public void ColorAlhpaChange(UI ui) {

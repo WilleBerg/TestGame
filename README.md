@@ -1,24 +1,36 @@
 # TestGame - Small game im making in C# Monogame
 
 
+v0.020 - The game now loads and unloads in a better way than before. It only loads the textures it needs currently and unloads anything it doesnt need.
+The change zone logic is now completely different. A switch zone animation has been added. Way harder to implement than I thought. Fixed varius bugs when switching between the same
+two zones. Loading now feels faster since the game doesnt load all textures at the start. Might be placebo.
+
+TODO:
+- Fix scaling (Not urgent).
+- Remake bedroom sprite.
+- Fix small bug when adding hitboxes. First one always turns blue.
+- Change hitbox savefile to either JSON or XML.
+- Add talk hitbox and interact hitbox.
+- After bedroom sprite, create the next zone.
 
 
-
+------------------------------------------------------------------------------------------
 
 v0.019 - Remade the whole hallway sprite. Added startvector for hallwayRoom and made sure the hallway sprite spawns in the right place. Also added hitboxes for hallwayRoom.
 
 TODO:
-- Still need to comment Grid/Hitbox.
+- Still need to comment Grid/Hitbox.	done
 - Fix scaling.
-- Add zone switch animation.
+- Add zone switch animation.	done ok
 - Maybe make a better background sprite.
 - Remake bedroom sprite.
-- Create a save character and zone pos for easier zone adding.
+- Create a save character and zone pos for easier zone adding. done
 - Fix small bug when adding hitboxes. First one always turns blue.
-- Read up on loading and unloading in Monogame.
-- Maybe change hitbox saving file type.
+- Read up on loading and unloading in Monogame. done
+- Maybe change hitbox saving file type. 
 - Add talk hitbox and interact hitbox.
 - Loading feels like its taking a long time. Read up on how to make it faster.
+- Start working on loading/unloading. done
 
 ------------------------------------------------------------------------------------------
 

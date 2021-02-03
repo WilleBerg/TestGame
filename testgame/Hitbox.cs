@@ -1,7 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace testgame {
     public class Hitbox {
@@ -11,7 +8,7 @@ namespace testgame {
         private Vector2 position;
         private int clickCount;
         public Zone connectedZone;
-        
+
 
         public Vector2 Position { get { return position; } set { position = value; } }
         public bool WallBox { get { return wallBox; } set { wallBox = value; } }
@@ -33,10 +30,20 @@ namespace testgame {
             position.X += x * size;
             position.Y += y * size;
         }
+        /// <summary>
+        /// Creates the rectangle for the hitbox.
+        /// </summary>
+        /// <param name="x">The X position of the hitbox</param>
+        /// <param name="y">The Y position of the hitbox</param>
+        /// <param name="size"> The size of the hitbox</param>
         private void CreateRectangle(int x, int y, int size) {
             SetVectors(x, y, size);
-            rectangle = new Rectangle((int) position.X, (int) position.Y, size, size);
+            rectangle = new Rectangle((int)position.X, (int)position.Y, size, size);
         }
+        /// <summary>
+        /// Changes the hitbox property.
+        /// Called from Grid.SetHitBox
+        /// </summary>
         public void SetHitbox() {
             if (clickCount == 0) {
                 WallBox = true;
@@ -59,12 +66,14 @@ namespace testgame {
             }
         }
 
-        public void ChangeZone(PC pc) {
+        /// <summary>
+        /// Checks if the zone should be changed
+        /// </summary>
+        /// <param name="pc">The playable character</param>
+        public bool ChangeZone(PC pc) {
             if (pc.hitbox.Intersects(rectangle) && zoneBox) {
-                Game1.world.PlayableCharacter.vector.X = connectedZone.StartVector.X;
-                Game1.world.PlayableCharacter.vector.Y = connectedZone.StartVector.Y;
-                Game1.world.CurrentZone = connectedZone;
-            }
+                return true;
+            } else return false;
         }
 
         override

@@ -40,13 +40,14 @@ namespace testgame {
         /// <param name="ui"></param>
         public void Buttons(UI ui) {
             if (ui.Musknappar() && ui.RecChecker(startRec)) {
-                switchKey = 1;
+                Game1.currentGameState = Game1.GameState.InGame;
             }
             if (ui.Musknappar() && ui.RecChecker(settingsRec)) {
-                switchKey = 2;
+                Game1.currentGameState = Game1.GameState.Settings;
+                Game1.world.CurrentLoadState = Game1.LoadStates.Settings;
             }
             if (ui.Musknappar() && ui.RecChecker(exitRec)) {
-                switchKey = 2000;
+                Game1.currentGameState = Game1.GameState.Exit;
             }
         }
 
