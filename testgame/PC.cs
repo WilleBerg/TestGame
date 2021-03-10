@@ -21,8 +21,11 @@ namespace testgame {
             latestAnimation = animation[0];
         }
 
+
+
+
         public void AddAnimation(Animation added) {
-            animation.Add(added);
+            Animation.Add(added);
         }
 
     }

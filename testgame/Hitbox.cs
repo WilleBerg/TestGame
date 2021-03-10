@@ -1,10 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace testgame {
-    public class Hitbox {
+    [Serializable]
+    public class Hitbox : IMovable, IHittable{
         private bool wallBox;
         private bool zoneBox;
-        public Rectangle rectangle;
+        private Rectangle rectangle;
         private Vector2 position;
         private int clickCount;
         public Zone connectedZone;
@@ -13,7 +17,10 @@ namespace testgame {
         public Vector2 Position { get { return position; } set { position = value; } }
         public bool WallBox { get { return wallBox; } set { wallBox = value; } }
         public bool ZoneBox { get { return zoneBox; } set { zoneBox = value; } }
+        public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
+        public Hitbox() {
 
+        }
         public Hitbox(bool wallBox, bool zoneBox, int x, int y, int size) {
             this.wallBox = wallBox;
             this.zoneBox = zoneBox;
@@ -71,15 +78,48 @@ namespace testgame {
         /// </summary>
         /// <param name="pc">The playable character</param>
         public bool ChangeZone(PC pc) {
-            if (pc.hitbox.Intersects(rectangle) && zoneBox) {
+            if (pc.Hitbox.Intersects(rectangle) && zoneBox) {
                 return true;
             } else return false;
         }
 
+        
         override
         public string ToString() {
 
             return ( rectangle.ToString() );
+        }
+
+        public void SetHitboxX(int value) {
+            rectangle.X = value;
+        }
+
+        public void SetHitBoxY(int value) {
+            rectangle.Y = value;
+        }
+
+        public int GetHitBoxX() {
+            return rectangle.X;
+        }
+
+        public int GetHitBoxY() {
+            return rectangle.Y;
+        }
+
+        public float getX() {
+            return position.X;
+        }
+
+        public float getY() {
+            return position.Y;
+        }
+
+        public void setX(float input) {
+            position.X = input;
+        }
+
+        public void setY(float input) {
+            position.Y = input;
         }
     }
 }

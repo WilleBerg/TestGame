@@ -1,6 +1,12 @@
 # TestGame - Small game im making in C# Monogame
 
 
+v0.0201 - Minor changes. Added some interfaces in the code. Also changed acessability in the classes.
+
+TODO remains the same 
+
+------------------------------------------------------------------------------------------
+
 v0.020 - The game now loads and unloads in a better way than before. It only loads the textures it needs currently and unloads anything it doesnt need.
 The change zone logic is now completely different. A switch zone animation has been added. Way harder to implement than I thought. Fixed varius bugs when switching between the same
 two zones. Loading now feels faster since the game doesnt load all textures at the start. Might be placebo.
@@ -12,6 +18,7 @@ TODO:
 - Change hitbox savefile to either JSON or XML.
 - Add talk hitbox and interact hitbox.
 - After bedroom sprite, create the next zone.
+- Give zones ID:s so that you can read and write them easier
 
 
 ------------------------------------------------------------------------------------------

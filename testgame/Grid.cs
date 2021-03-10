@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace testgame {
+    [Serializable]
     public class Grid {
         private int width;
         private int height;
@@ -15,6 +17,7 @@ namespace testgame {
         private bool showDisabledHitboxes;
         private bool setHitboxToggle;
         public Vector2 vectorDelta;
+        [XmlIgnore]
         public Hitbox[,] hitBoxArray;
         
 
@@ -55,7 +58,7 @@ namespace testgame {
         public void SetHitbox(UI ui) {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
-                    if (ui.LeftMousePressed() && ui.RecChecker(hitBoxArray[i, j].rectangle)) {
+                    if (ui.LeftMousePressed() && ui.RecChecker(hitBoxArray[i, j].Rectangle)) {
                         hitBoxArray[i, j].SetHitbox();
                     }
 
@@ -66,11 +69,11 @@ namespace testgame {
         /// Writes the whole hitboxgrid to a .txt file.
         /// </summary>
         public void WriteGrid() {
-            TextWriter tw = new StreamWriter("SavedList.txt");
+            TextWriter tw = new StreamWriter("Hitboxes/SavedList.txt");
             for (int i = 0; i < Height; i++) {
                 for (int j = 0; j < Width; j++) {
                     string temp = "";
-                    
+
                     if (hitBoxArray[i,j].WallBox) {
                         temp += i + ";" + j;
                         temp += ":" + hitBoxArray[i, j].WallBox.ToString();
@@ -87,6 +90,14 @@ namespace testgame {
             }
             tw.Close();
         }
+
+        public void SaveToXML(string filename) {
+            using (var stream = new FileStream(filename, FileMode.Create)) {
+                var XML = new XmlSerializer(typeof(Grid));
+                XML.Serialize(stream, this);
+            }
+        }
+
         /// <summary>
         /// Loades the grid from the saveFile .txt file.
         /// </summary>

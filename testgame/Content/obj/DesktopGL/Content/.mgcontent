@@ -22,6 +22,19 @@
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charRight.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charRightAnimation1.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Large/charRightAnimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charback.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charbackanimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charbackanimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charfronanimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charfronanimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charfront.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charHitboxTexture.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charLeft.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charLeftAnimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charLeftAnimation2.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charRight.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charRightAnimation1.png</File>
+    <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Medium/charRightAnimation2.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Tiny/charfrontSmall - kopia.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Character/Tiny/charfrontSmall.png</File>
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/debug.spritefont</File>
@@ -43,6 +56,19 @@
     <File>C:/Users/willi/Desktop/testgame/testgame/Content/Zone/Large/rumstor3.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

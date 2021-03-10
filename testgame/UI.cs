@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace testgame {
     public class UI {
@@ -11,6 +8,7 @@ namespace testgame {
         public MouseState gammalMus;
         public KeyboardState keyboardState;
         public KeyboardState oldKeyboard;
+        public Keys latestKeyPressed;
         public UI() {
             gammalMus = mus;
             mus = Mouse.GetState();
@@ -44,6 +42,19 @@ namespace testgame {
             oldKeyboard = keyboardState;
             mus = Mouse.GetState();
             keyboardState = Keyboard.GetState();
+            Keys[] keys = { Keys.W, Keys.S, Keys.A, Keys.D };
+            for (int i = 0; i < keys.Length; i++) {
+                if (DownKey(keys[i])) {
+                    latestKeyPressed = keys[i];
+                }
+            }
+            for (int i = 0; i < 2; i++) {
+                for (int j = 2; j < 4; j++) {
+                    if (DownKey(keys[i]) && DownKey(keys[j])) {
+                        latestKeyPressed = keys[i];
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -105,23 +116,23 @@ namespace testgame {
         /// <returns></returns>
         public List<Keys> NotAllowedKeys(PC pc, Grid grid) {
             List<Keys> notAllowedKeys = new List<Keys>();
-            Rectangle tempD = new Rectangle(pc.hitbox.X + Game1.pcMovementSpeed + 5, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
-            Rectangle tempA = new Rectangle(pc.hitbox.X - Game1.pcMovementSpeed - 5, pc.hitbox.Y, pc.hitbox.Width, pc.hitbox.Height);
-            Rectangle tempS = new Rectangle(pc.hitbox.X, pc.hitbox.Y + Game1.pcMovementSpeed + 5, pc.hitbox.Width, pc.hitbox.Height);
-            Rectangle tempW = new Rectangle(pc.hitbox.X, pc.hitbox.Y - Game1.pcMovementSpeed - 5, pc.hitbox.Width, pc.hitbox.Height);
+            Rectangle tempD = new Rectangle(pc.GetHitBoxX() + Game1.pcMovementSpeed + 5, pc.GetHitBoxY(), pc.Hitbox.Width, pc.Hitbox.Height);
+            Rectangle tempA = new Rectangle(pc.GetHitBoxX()- Game1.pcMovementSpeed - 5, pc.GetHitBoxY(), pc.Hitbox.Width, pc.Hitbox.Height);
+            Rectangle tempS = new Rectangle(pc.GetHitBoxX(), pc.GetHitBoxY() + Game1.pcMovementSpeed + 5, pc.Hitbox.Width, pc.Hitbox.Height);
+            Rectangle tempW = new Rectangle(pc.GetHitBoxX(), pc.GetHitBoxY() - Game1.pcMovementSpeed - 5, pc.Hitbox.Width, pc.Hitbox.Height);
             for (int i = 0; i < grid.Height; i++) {
                 for (int j = 0; j < grid.Width; j++) {
-                    if (grid.hitBoxArray[i,j].WallBox) {
-                        if (tempD.Intersects(grid.hitBoxArray[i,j].rectangle) && !notAllowedKeys.Contains(Keys.D)) {
+                    if (grid.hitBoxArray[i, j].WallBox) {
+                        if (tempD.Intersects(grid.hitBoxArray[i, j].Rectangle) && !notAllowedKeys.Contains(Keys.D)) {
                             notAllowedKeys.Add(Keys.D);
                         }
-                        if (tempA.Intersects(grid.hitBoxArray[i, j].rectangle) && !notAllowedKeys.Contains(Keys.A)) {
+                        if (tempA.Intersects(grid.hitBoxArray[i, j].Rectangle) && !notAllowedKeys.Contains(Keys.A)) {
                             notAllowedKeys.Add(Keys.A);
                         }
-                        if (tempS.Intersects(grid.hitBoxArray[i, j].rectangle) && !notAllowedKeys.Contains(Keys.S)) {
+                        if (tempS.Intersects(grid.hitBoxArray[i, j].Rectangle) && !notAllowedKeys.Contains(Keys.S)) {
                             notAllowedKeys.Add(Keys.S);
                         }
-                        if (tempW.Intersects(grid.hitBoxArray[i, j].rectangle) && !notAllowedKeys.Contains(Keys.W)) {
+                        if (tempW.Intersects(grid.hitBoxArray[i, j].Rectangle) && !notAllowedKeys.Contains(Keys.W)) {
                             notAllowedKeys.Add(Keys.W);
                         }
                     }

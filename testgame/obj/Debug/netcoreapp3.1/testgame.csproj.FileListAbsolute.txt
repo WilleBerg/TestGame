@@ -204,3 +204,17 @@ C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Zone\La
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Background\hallwayBackgroundLarge.xnb
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Zone\Large\hallwayv2.xnb
 C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Background\black.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charback.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charbackanimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charbackanimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charfronanimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charfronanimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charfront.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charHitboxTexture .xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charLeft.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charLeftAnimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charLeftAnimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charRight.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charRightAnimation1.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charRightAnimation2.xnb
+C:\Users\willi\Desktop\testgame\testgame\bin\Debug\netcoreapp3.1\Content\Character\Medium\charHitboxTexture.xnb

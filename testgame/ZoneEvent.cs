@@ -12,7 +12,7 @@ namespace testgame {
 
         public void ChangeZone(Zone newZone) {
             Game1.world.CurrentZone = newZone;
-            Game1.world.PlayableCharacter.vector = newZone.StartVector;
+            Game1.world.PlayableCharacter.Vector = newZone.StartVector;
 
         }
 

@@ -41,6 +41,7 @@ namespace testgame {
         public void Buttons(UI ui) {
             if (ui.Musknappar() && ui.RecChecker(startRec)) {
                 Game1.currentGameState = Game1.GameState.InGame;
+                Game1.world.CurrentLoadState = Game1.world.CurrentZone.loadState;
             }
             if (ui.Musknappar() && ui.RecChecker(settingsRec)) {
                 Game1.currentGameState = Game1.GameState.Settings;

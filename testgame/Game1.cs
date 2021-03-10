@@ -10,6 +10,7 @@ namespace testgame {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+
         public static int resX = 1920;
         public static int resY = 1080;
 
@@ -24,7 +25,7 @@ namespace testgame {
 
         bool toggleGrid = false;
         bool switchedZone = false;
-        bool allowedToSwitchZone = true;
+
         Zone nextZone;
 
         float changeZoneColorAlpha = 1.0f;
@@ -93,7 +94,7 @@ namespace testgame {
         Texture2D charLeftAnimation1;
         Texture2D charLeftAnimation2;
         Texture2D charHitboxTexture;
-
+        Texture2D pcLatestTexture;
 
         Texture2D gridTexture;
 
@@ -118,8 +119,8 @@ namespace testgame {
         ZoneGraphics zoneGraphics = new ZoneGraphics();
         Zone hallwayZone = new Zone();
         ZoneGraphics hallwayGraphics = new ZoneGraphics();
-        Grid roomGrid = new Grid(240, 135, 12, "FirstRoomHitbox.txt");
-        Grid hallwayGrid = new Grid(240, 135, 12, "HallwayRoomHitbox.txt");
+        Grid roomGrid = new Grid(240, 135, 12, "Hitboxes/FirstRoomHitbox.txt");
+        Grid hallwayGrid = new Grid(240, 135, 12, "Hitboxes/HallwayRoomHitbox.txt");
         private FrameCounter _frameCounter = new FrameCounter();
 
         List<Character> currentCharacters = new List<Character>();
@@ -154,10 +155,7 @@ namespace testgame {
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            
-
-            //Character and character animation textures
-
+            charHitboxTexture = Content.Load<Texture2D>("Character/Medium/charHitboxTexture");
             black = Content.Load<Texture2D>("Background/black");
             gridTexture = Content.Load<Texture2D>("Misc/gridSquare");
             debug = Content.Load<SpriteFont>("debug");
@@ -195,6 +193,8 @@ namespace testgame {
                     leftSideAnimation.AddTexture(charLeftAnimation2);
                     leftSideAnimation.AddTexture(charLeftTexture);
 
+
+                    
                     // Creation of the first rooms grid
                     roomGrid.CreateHitBoxes();
                     roomGrid.LoadGrid();
@@ -204,12 +204,13 @@ namespace testgame {
 
                     // PC gets created and animations gets added.
                     character = new PC(ballvector, ballGraphics, pcMovementSpeed, new List<Animation> { frontAnimation },
-                                new Rectangle((int)ballvector.X, (int)ballvector.Y, (int)( 66 * 1.5 ), (int)( 108 * 1.5 )));
+                                new Rectangle((int)ballvector.X, (int)ballvector.Y, (int)( charHitboxTexture.Width), (int)( charHitboxTexture.Height )));
 
                     currentCharacters.Add(character);
                     character.AddAnimation(backAnimation);
                     character.AddAnimation(rightSideAnimation);
                     character.AddAnimation(leftSideAnimation);
+
 
                     zone = new Zone(contentHandler, testZoneVector, zoneGraphics, currentCharacters, character, roomGrid);
                     zone.StartVector = new Vector2(915, 470);
@@ -218,7 +219,7 @@ namespace testgame {
 
                     hallwayBackground = new Background(hallwayBackgroundLarge, new Vector2(-200, -330), new Vector2(-200, -330), 3);
                     hallwayZone = new Zone(contentHandler, new Vector2(0, -456), hallwayGraphics, currentCharacters,
-                        character, hallwayGrid, hallwayBackground, new Vector2(826, 456));
+                        character, hallwayGrid, hallwayBackground, new Vector2(846, 456 + 65));
                     hallwayZone.ZoneStartVector = new Vector2(0, -456);
                     hallwayZone.setState(LoadStates.Hallway);
 
@@ -233,13 +234,13 @@ namespace testgame {
                     for (int i = 68; i < 78; i++) {
                         hallwayGrid.hitBoxArray[55, i].connectedZone = zone;
                     }
-                    
+                    ui.latestKeyPressed = Keys.S;
                     world.CurrentLoadState = LoadStates.TitleScreen;
                     LoadContent();
                     break;
                     
                 case LoadStates.TitleScreen:
-                    settingsMenuTexture = Content.Load<Texture2D>("UI/Large/settingsTexture");
+                    
                     testZone = Content.Load<Texture2D>("game1testpic");
                     menu.menuTexture = Content.Load<Texture2D>("UI/Large/menu");
                     startTexture = Content.Load<Texture2D>("UI/Large/start");
@@ -247,6 +248,7 @@ namespace testgame {
                     exitTexture = Content.Load<Texture2D>("UI/Large/exit");
                     break;
                 case LoadStates.Settings:
+                    settings.settingsTexture = Content.Load<Texture2D>("UI/Large/settingsTexture");
                     returnTexture = Content.Load<Texture2D>("UI/Large/return");
                     devToggleTexture = Content.Load<Texture2D>("UI/Large/enableDev");
                     break;
@@ -261,32 +263,37 @@ namespace testgame {
                     break;
             }
 
-            // Background
+            character.Animation[0].textureList[0] = Content.Load<Texture2D>("Character/Medium/charfront");
+            character.Animation[0].textureList[1] = Content.Load<Texture2D>("Character/Medium/charfronanimation1");
+            character.Animation[0].textureList[2] = Content.Load<Texture2D>("Character/Medium/charfronanimation2");
 
-            character.animation[0].textureList[0] = Content.Load<Texture2D>("Character/Large/charfront");
-            character.animation[0].textureList[1] = Content.Load<Texture2D>("Character/Large/charfronanimation1");
-            character.animation[0].textureList[2] = Content.Load<Texture2D>("Character/Large/charfronanimation2");
+            character.Animation[1].textureList[0] = Content.Load<Texture2D>("Character/Medium/charback");
+            character.Animation[1].textureList[1] = Content.Load<Texture2D>("Character/Medium/charbackanimation1");
+            character.Animation[1].textureList[2] = Content.Load<Texture2D>("Character/Medium/charbackanimation2");
 
-            character.animation[1].textureList[0] = Content.Load<Texture2D>("Character/Large/charback");
-            character.animation[1].textureList[1] = Content.Load<Texture2D>("Character/Large/charbackanimation1");
-            character.animation[1].textureList[2] = Content.Load<Texture2D>("Character/Large/charbackanimation2");
+            character.Animation[2].textureList[0] = Content.Load<Texture2D>("Character/Medium/charRight");
+            character.Animation[2].textureList[1] = Content.Load<Texture2D>("Character/Medium/charRightAnimation1");
+            character.Animation[2].textureList[2] = Content.Load<Texture2D>("Character/Medium/charRight");
+            character.Animation[2].textureList[3] = Content.Load<Texture2D>("Character/Medium/charRightAnimation2");
+            character.Animation[2].textureList[4] = Content.Load<Texture2D>("Character/Medium/charRight");
 
-            character.animation[2].textureList[0] = Content.Load<Texture2D>("Character/Large/charRight");
-            character.animation[2].textureList[1] = Content.Load<Texture2D>("Character/Large/charRightAnimation1");
-            character.animation[2].textureList[2] = Content.Load<Texture2D>("Character/Large/charRight");
-            character.animation[2].textureList[3] = Content.Load<Texture2D>("Character/Large/charRightAnimation2");
-            character.animation[2].textureList[4] = Content.Load<Texture2D>("Character/Large/charRight");
+            character.Animation[3].textureList[0] = Content.Load<Texture2D>("Character/Medium/charLeft");
+            character.Animation[3].textureList[1] = Content.Load<Texture2D>("Character/Medium/charLeftAnimation1");
+            character.Animation[3].textureList[2] = Content.Load<Texture2D>("Character/Medium/charLeft");
+            character.Animation[3].textureList[3] = Content.Load<Texture2D>("Character/Medium/charLeftAnimation2");
+            character.Animation[3].textureList[4] = Content.Load<Texture2D>("Character/Medium/charLeft");
 
-            character.animation[3].textureList[0] = Content.Load<Texture2D>("Character/Large/charLeft");
-            character.animation[3].textureList[1] = Content.Load<Texture2D>("Character/Large/charLeftAnimation1");
-            character.animation[3].textureList[2] = Content.Load<Texture2D>("Character/Large/charLeft");
-            character.animation[3].textureList[3] = Content.Load<Texture2D>("Character/Large/charLeftAnimation2");
-            character.animation[3].textureList[4] = Content.Load<Texture2D>("Character/Large/charLeft");
+            character.Graphics.texture = Content.Load<Texture2D>("Character/Medium/charback");
+            string[] tmp = { "Character/Medium/charback", "Character/Medium/charLeft", 
+                             "Character/Medium/charfront", "Character/Medium/charRight" };
 
-            character.graphics.texture = Content.Load<Texture2D>("Character/Large/charfront");
-            character.latestTexture = character.animation[0].textureList[0];
+            Keys[] key = { Keys.W, Keys.A, Keys.S, Keys.D };
 
-            charHitboxTexture = Content.Load<Texture2D>("Character/Large/charHitboxTexture");
+            for (int i = 0; i < tmp.Length; i++) {
+                if (ui.latestKeyPressed == key[i]) {
+                    character.LatestTexture = Content.Load<Texture2D>(tmp[i]);
+                }
+            }
             testSprite = Content.Load<Texture2D>("Character/Tiny/charfrontSmall");
 
 
@@ -296,13 +303,14 @@ namespace testgame {
         protected override void Update(GameTime gameTime) {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) {
                 WritePlayerPos();
+                //world.CurrentZone.SaveToXML("testxml.xml");
                 Exit();
             }
 
             ui.UpdateStates();
 
             // Horrible debug string.
-            kukollon = "Zone Coordinates; X: " + world.CurrentZone.vector.X + " Y: " + world.CurrentZone.vector.Y + "     Ball Coordinates; X: " + character.vector.X + " Y: " + character.vector.Y +
+            kukollon = "Zone Coordinates; X: " + world.CurrentZone.vector.X + " Y: " + world.CurrentZone.vector.Y + "     Ball Coordinates; X: " + character.getX() + " Y: " + character.getY() +
                 menu.alpha + "   Frame Count " + currentFrameCount + "   Texture Count " + textureCount + "     " + roomGrid.Height + "     " + roomGrid.Width + "\n"
                 + "Grid view: " + toggleGrid + "\n" + "Grid Edit: " + world.CurrentZone.grid.SetHitboxToggle + " \n \n \n" + world.CurrentZone.grid.hitBoxArray[0, 0].ToString() + " Not allowed keys: ";
             for (int i = 0; i < notAllowedKeys.Count; i++) {
@@ -317,7 +325,7 @@ namespace testgame {
         void WritePlayerPos() {
             TextWriter tw = new StreamWriter("PlayerPosition.txt");
             string tmp = "";
-            tmp = "Player Pos X: " + world.PlayableCharacter.vector.X + " Y: " + world.PlayableCharacter.vector.Y;
+            tmp = "Player Pos X: " + world.PlayableCharacter.getX() + " Y: " + world.PlayableCharacter.getY(); ;
             tw.WriteLine(tmp);
             tw.Close();
         }
@@ -343,7 +351,6 @@ namespace testgame {
                     DrawMenu();
                     if (currentGameState != GameState.TitleScreen) {
                         Content.Unload();
-                        world.CurrentLoadState = world.CurrentZone.loadState;
                         LoadContent();
                     }
                     break;
@@ -359,8 +366,8 @@ namespace testgame {
                             Vector2 delta = new Vector2(0, 0);
                             delta.X = nextZone.vector.X - nextZone.ZoneStartVector.X;
                             delta.Y = nextZone.vector.Y - nextZone.ZoneStartVector.Y;
-                            world.PlayableCharacter.vector.X = nextZone.StartVector.X;
-                            world.PlayableCharacter.vector.Y = nextZone.StartVector.Y;
+                            world.PlayableCharacter.setX(nextZone.StartVector.X);
+                            world.PlayableCharacter.setY(nextZone.StartVector.Y);
                             world.CurrentZone = nextZone;
                             world.CurrentZone.vector = world.CurrentZone.ZoneStartVector;
                             for (int i = 0; i < world.CurrentZone.grid.Height; i++) {
@@ -371,9 +378,11 @@ namespace testgame {
                             }
                             if (world.CurrentZone.HasBackground) { world.CurrentZone.Background.vector = world.CurrentZone.Background.startVector; }
                             changeZoneColorAlpha = 1;
+
                             _spriteBatch.End();
                             world.CurrentLoadState = world.CurrentZone.loadState;
                             Content.Unload();
+                            
                             LoadContent();
                             break;
                         }
@@ -413,6 +422,7 @@ namespace testgame {
                     DrawSettings();
                     if (currentGameState != GameState.Settings) {
                         Content.Unload();
+                        LoadContent();
                     }
                     break;
                 case GameState.Exit:
@@ -462,8 +472,8 @@ namespace testgame {
             Color recColor = new Color(Color.Black, 1.0f);
             for (int i = 0; i < grid.Height; i++) {
                 for (int j = 0; j < grid.Width; j++) {
-                    grid.hitBoxArray[i, j].rectangle.X = (int)grid.vectorDelta.X + (int)grid.hitBoxArray[i, j].Position.X;
-                    grid.hitBoxArray[i, j].rectangle.Y = (int)grid.vectorDelta.Y + (int)grid.hitBoxArray[i, j].Position.Y;
+                    grid.hitBoxArray[i, j].SetHitboxX((int)grid.vectorDelta.X + (int)grid.hitBoxArray[i, j].Position.X);
+                    grid.hitBoxArray[i, j].SetHitBoxY((int)grid.vectorDelta.Y + (int)grid.hitBoxArray[i, j].Position.Y);
                     if (!switchedZone) {
                         switchedZone = grid.hitBoxArray[i, j].ChangeZone(world.PlayableCharacter);
                     } else {
@@ -471,11 +481,11 @@ namespace testgame {
                         break;
                     }
                     if (grid.hitBoxArray[i, j].WallBox && toggleGrid) {
-                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j].rectangle, Color.Red);
+                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j].Rectangle, Color.Red);
                     } else if (toggleGrid && grid.hitBoxArray[i, j].ZoneBox) {
-                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j].rectangle, Color.Blue);
+                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j].Rectangle, Color.Blue);
                     } else if (toggleGrid && grid.ShowDisabledHitBoxes) {
-                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j].rectangle, Color.White);
+                        _spriteBatch.Draw(gridTexture, grid.hitBoxArray[i, j].Rectangle, Color.White);
                     }
                 }
                 if (switchedZone) {
@@ -488,45 +498,48 @@ namespace testgame {
         /// </summary>
         /// <param name="character"> The playable character that gets drawn</param>
         public void DrawPlayableCharacter(PC character) {
-            character.hitbox.X = (int)character.vector.X;
-            character.hitbox.Y = (int)character.vector.Y;
+            // Moves the characters hitbox
+            character.SetHitboxX((int)character.getX());
+            character.SetHitBoxY((int)character.getY());
+
             if (settings.DevToggle) {
-                _spriteBatch.Draw(charHitboxTexture, character.hitbox, Color.Blue);
+                _spriteBatch.Draw(charHitboxTexture, character.Hitbox, Color.Blue);
             }
-            for (int i = 0; i < character.animation.Count; i++) {
+            for (int i = 0; i < character.Animation.Count; i++) {
 
                 bool doubleKey1 = ( ui.DownKey(Keys.D) || ui.DownKey(Keys.A) ) && ui.DownKey(Keys.W);
                 bool doubleKey2 = ui.DownKey(Keys.S) && ( ui.DownKey(Keys.D) || ui.DownKey(Keys.A) );
                 bool doubleKey3 = ui.DownKey(Keys.W) && ui.DownKey(Keys.S);
                 bool doubleKey4 = ui.DownKey(Keys.D) && ui.DownKey(Keys.A);
 
-                if (( ui.DownKey(Keys.S) || doubleKey2 ) && !doubleKey3 && character.animation[i].AnimationType() == 0) {
-                    character.latestTexture = character.animation[i].textureList[0];
-                    character.latestAnimation = character.animation[i];
-                    DrawAnimation(character.animation[i], character);
+                if (( ui.DownKey(Keys.S) || doubleKey2 ) && !doubleKey3 && character.Animation[i].AnimationType() == 0) {
+                    character.LatestTexture = character.Animation[i].textureList[0];
+                    character.LatestAnimation = character.Animation[i];
+                    DrawAnimation(character.Animation[i], character);
 
-                } else if (( ui.DownKey(Keys.W) || doubleKey1 ) && !doubleKey3 && character.animation[i].AnimationType() == 1) {
-                    character.latestTexture = character.animation[i].textureList[0];
-                    character.latestAnimation = character.animation[i];
-                    DrawAnimation(character.animation[i], character);
+                } else if (( ui.DownKey(Keys.W) || doubleKey1 ) && !doubleKey3 && character.Animation[i].AnimationType() == 1) {
+                    character.LatestTexture = character.Animation[i].textureList[0];
+                    character.LatestAnimation = character.Animation[i];
+                    DrawAnimation(character.Animation[i], character);
 
-                } else if (ui.DownKey(Keys.A) && !doubleKey1 && !doubleKey4 && !doubleKey2 && character.animation[i].AnimationType() == 2) {
-                    character.latestTexture = character.animation[i].textureList[0];
-                    character.latestAnimation = character.animation[i];
-                    DrawAnimation(character.animation[i], character);
+                } else if (ui.DownKey(Keys.A) && !doubleKey1 && !doubleKey4 && !doubleKey2 && character.Animation[i].AnimationType() == 2) {
+                    character.LatestTexture = character.Animation[i].textureList[0];
+                    character.LatestAnimation = character.Animation[i];
+                    DrawAnimation(character.Animation[i], character);
 
-                } else if (ui.DownKey(Keys.D) && !doubleKey1 && !doubleKey4 && !doubleKey2 && character.animation[i].AnimationType() == 3) {
-                    character.latestTexture = character.animation[i].textureList[0];
-                    character.latestAnimation = character.animation[i];
-                    DrawAnimation(character.animation[i], character);
+                } else if (ui.DownKey(Keys.D) && !doubleKey1 && !doubleKey4 && !doubleKey2 && character.Animation[i].AnimationType() == 3) {
+                    character.LatestTexture = character.Animation[i].textureList[0];
+                    character.LatestAnimation = character.Animation[i];
+                    DrawAnimation(character.Animation[i], character);
 
                 } else if (!ui.DownKey(Keys.A) && !ui.DownKey(Keys.D) && !ui.DownKey(Keys.S) && !ui.DownKey(Keys.W)) {
-                    _spriteBatch.Draw(character.latestTexture, character.vector, Color.White);
+                    _spriteBatch.Draw(character.LatestTexture, character.Vector, Color.White);
 
                 } else if (doubleKey3 || doubleKey4) {
-                    _spriteBatch.Draw(character.latestTexture, character.vector, Color.White);
+                    _spriteBatch.Draw(character.LatestTexture, character.Vector, Color.White);
                 }
             }
+            pcLatestTexture = character.LatestTexture;
         }
         /// <summary>
         /// Draws a characters animation. 
@@ -536,11 +549,11 @@ namespace testgame {
         public void DrawAnimation(Animation animation, Character character) {
             currentFrameCount = animation.frameCount;
             if (animation.currAnimation > animation.textureList.Count - 1) {
-                _spriteBatch.Draw(character.latestTexture, character.vector, Color.White);
+                _spriteBatch.Draw(character.LatestTexture, character.Vector, Color.White);
                 animation.currAnimation = 1;
                 animation.frameCount = 0;
             } else {
-                _spriteBatch.Draw(animation.textureList[animation.currAnimation], character.vector, Color.White);
+                _spriteBatch.Draw(animation.textureList[animation.currAnimation], character.Vector, Color.White);
                 animation.frameCount++;
                 if (animation.frameCount > 30) {
                     animation.currAnimation++;
